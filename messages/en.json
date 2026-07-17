@@ -1,0 +1,43 @@
+{
+  "header": {
+    "topBar": "Authentic sweets — Free delivery for orders over 300 EGP",
+    "home": "Home",
+    "products": "Products",
+    "gift": "Gift Boxes",
+    "corporate": "Corporate Orders",
+    "about": "About Us",
+    "contact": "Contact",
+    "whatsapp": "WhatsApp",
+    "searchPlaceholder": "Search products..."
+  },
+
+  "hero": {
+   "badge": "Mawlid Al-Nabi Season 1446",
+
+    "headline": "Premium Mawlid Sweets\nwith Authentic Taste",
+
+    "subheadline": "Discover our fresh Mawlid sweets, luxury gift boxes, and corporate order solutions.",
+
+    "ctaShop": "Shop Now",
+
+    "ctaCorporate": "Request Corporate Offer",
+
+    "stats": {
+      "yearsValue": "15+",
+      "yearsLabel": "Manufacturing Experience",
+
+      "productsValue": "5,000+",
+      "productsLabel": "Satisfied Customers",
+
+      "clientsValue": "100%",
+      "clientsLabel": "Fresh Products"
+    },
+
+    "products": {
+      "malban": "Malban",
+      "homsya": "Homsiya",
+      "semsmya": "Semsmiya",
+      "foul": "Halawa Foul"
+    }
+  }
+}
