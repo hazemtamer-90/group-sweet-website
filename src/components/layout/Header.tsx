@@ -2,15 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 
-import {
-  ShoppingCart,
-  Search,
-  Menu,
-  X,
-  Globe,
-} from "lucide-react";
+import { ShoppingCart, Search, Menu, X, Globe } from "lucide-react";
 
 import { useLocale, useTranslations } from "next-intl";
 
@@ -18,16 +12,21 @@ interface HeaderProps {
   cartCount?: number;
 }
 
-export default function Header({
-  cartCount = 0,
-}: HeaderProps) {
+export default function Header({ cartCount = 0 }: HeaderProps) {
   const t = useTranslations("header");
   const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
   const isArabic = locale === "ar";
+  const switchLocale = () => {
+  router.replace(pathname, {
+    locale: locale === "ar" ? "en" : "ar",
+  });
+};
 
   return (
     <>
@@ -38,10 +37,8 @@ export default function Header({
 
       {/* Header */}
       <header className="sticky top-0 z-50 bg-[#FAF5E9]/95 backdrop-blur-md border-b border-[#e9dcc4]">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6">
-
-    <div className="flex h-20 items-center justify-between">
-
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex h-20 items-center justify-between">
             {/* Logo */}
 
             <Link href="/">
@@ -58,7 +55,6 @@ export default function Header({
             {/* Desktop Navigation */}
 
             <nav className="hidden lg:flex items-center gap-8">
-
               <Link
                 href="/"
                 className="font-medium text-[#670047] border-b-2 border-[#C9942A] pb-1"
@@ -74,7 +70,7 @@ export default function Header({
               </Link>
 
               <Link
-                href="/gift-boxes"
+                href="/gifts"
                 className="text-[#2C1A0E] hover:text-[#670047] transition"
               >
                 {t("gift")}
@@ -100,15 +96,17 @@ export default function Header({
               >
                 {t("contact")}
               </Link>
-
             </nav>
 
             {/* Actions */}
 
             <div className="flex items-center gap-3">
-                             {/* Language */}
+              {/* Language */}
 
-              <button className="flex items-center gap-2 rounded-full border border-[#d7c4a8] bg-white px-3 py-2 text-sm font-semibold text-[#670047] hover:bg-[#F5EDD6] transition">
+              <button
+                onClick={switchLocale}
+                className="flex items-center gap-2 rounded-full border border-[#d7c4a8] bg-white px-3 py-2 text-sm font-semibold text-[#670047] hover:bg-[#F5EDD6] transition"
+              >
                 <Globe size={15} />
                 <span>{isArabic ? "EN" : "AR"}</span>
               </button>
@@ -135,10 +133,7 @@ export default function Header({
               {/* Cart */}
 
               <button className="relative rounded-full p-2 hover:bg-[#EFE4C8] transition">
-                <ShoppingCart
-                  size={21}
-                  className="text-[#2C1A0E]"
-                />
+                <ShoppingCart size={21} className="text-[#2C1A0E]" />
 
                 {cartCount > 0 && (
                   <span className="absolute -top-1 -left-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#670047] text-[10px] font-bold text-white">
@@ -153,22 +148,14 @@ export default function Header({
                 onClick={() => setMenuOpen(!menuOpen)}
                 className="lg:hidden rounded-full p-2 hover:bg-[#EFE4C8] transition"
               >
-                {menuOpen ? (
-                  <X size={22} />
-                ) : (
-                  <Menu size={22} />
-                )}
+                {menuOpen ? <X size={22} /> : <Menu size={22} />}
               </button>
-
             </div>
-
           </div>
 
           {searchOpen && (
             <div className="pb-5">
-
               <div className="relative">
-
                 <input
                   type="text"
                   placeholder={t("searchPlaceholder")}
@@ -179,68 +166,64 @@ export default function Header({
                   size={18}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-[#7A5C3A]"
                 />
-
               </div>
-
             </div>
-          )} 
-                    {menuOpen && (
-          <div className="border-t border-[#e9dcc4] bg-[#FFFBF0] lg:hidden">
-            <nav className="flex flex-col p-4">
+          )}
+          {menuOpen && (
+            <div className="border-t border-[#e9dcc4] bg-[#FFFBF0] lg:hidden">
+              <nav className="flex flex-col p-4">
+                <Link
+                  href="/"
+                  className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
+                >
+                  {t("home")}
+                </Link>
 
-              <Link
-                href="/"
-                className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
-              >
-                {t("home")}
-              </Link>
+                <Link
+                  href="/products"
+                  className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
+                >
+                  {t("products")}
+                </Link>
 
-              <Link
-                href="/products"
-                className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
-              >
-                {t("products")}
-              </Link>
+                <Link
+                  href="/gift-boxes"
+                  className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
+                >
+                  {t("gift")}
+                </Link>
 
-              <Link
-                href="/gift-boxes"
-                className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
-              >
-                {t("gift")}
-              </Link>
+                <Link
+                  href="/corporate"
+                  className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
+                >
+                  {t("corporate")}
+                </Link>
 
-              <Link
-                href="/corporate"
-                className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
-              >
-                {t("corporate")}
-              </Link>
+                <Link
+                  href="/about"
+                  className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
+                >
+                  {t("about")}
+                </Link>
 
-              <Link
-                href="/about"
-                className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
-              >
-                {t("about")}
-              </Link>
+                <Link
+                  href="/contact"
+                  className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
+                >
+                  {t("contact")}
+                </Link>
 
-              <Link
-                href="/contact"
-                className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
-              >
-                {t("contact")}
-              </Link>
-
-              <Link
-                href="https://wa.me/201000000000"
-                target="_blank"
-                className="mt-4 rounded-lg bg-[#25D366] py-3 text-center font-medium text-white"
-              >
-                {t("whatsapp")}
-              </Link>
-
-            </nav>
-          </div>
-        )}
+                <Link
+                  href="https://wa.me/201000000000"
+                  target="_blank"
+                  className="mt-4 rounded-lg bg-[#25D366] py-3 text-center font-medium text-white"
+                >
+                  {t("whatsapp")}
+                </Link>
+              </nav>
+            </div>
+          )}
         </div>
       </header>
     </>
