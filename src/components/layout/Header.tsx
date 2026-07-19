@@ -71,8 +71,6 @@ export default function Header() {
                 {t("products")}
               </Link>
 
-             
-
               <Link
                 href="/corporate"
                 className="text-[#2C1A0E] hover:text-[#670047] transition"
@@ -184,13 +182,6 @@ export default function Header() {
                   className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
                 >
                   {t("products")}
-                </Link>
-
-                <Link
-                  href="/gift-boxes"
-                  className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
-                >
-                  {t("gift")}
                 </Link>
 
                 <Link
