@@ -3,7 +3,7 @@
     "topBar": "Authentic sweets — Free delivery for orders over 300 EGP",
     "home": "Home",
     "products": "Products",
-    "gift": "Gift Boxes",
+
     "corporate": "Corporate Orders",
     "about": "About Us",
     "contact": "Contact",
@@ -12,7 +12,7 @@
   },
 
   "hero": {
-   "badge": "Mawlid Al-Nabi Season 1446",
+    "badge": "Mawlid Al-Nabi Season 1446",
 
     "headline": "Premium Mawlid Sweets\nwith Authentic Taste",
 
@@ -39,5 +39,416 @@
       "semsmya": "Semsmiya",
       "foul": "Halawa Foul"
     }
-  }
+  },
+
+  "categories": {
+    "sectionLabel": "Shop by Category",
+    "heading": "Mawlid Sweet Categories",
+    "subtext": "Choose from our premium collection of authentic Mawlid sweets.",
+
+    "items": [
+      {
+        "name": "Sesame, Chickpea & Peanut",
+        "description": "Traditional crunchy Mawlid sweets",
+        "count": "18 Products"
+      },
+      {
+        "name": "Homsiya",
+        "description": "Crunchy roasted chickpeas",
+        "count": "8 Products"
+      },
+      {
+        "name": "Malban with Nuts",
+        "description": "Fresh malban with walnuts and pistachios",
+        "count": "12 Products"
+      },
+      {
+        "name": "Peanut Halawa",
+        "description": "Authentic Egyptian peanut sweet",
+        "count": "6 Products"
+      },
+      {
+        "name": "Corporate & Wholesale Orders",
+        "description": "Bulk orders with special prices",
+        "count": "Special Offers"
+      }
+    ]
+  },
+  "featured": {
+    "sectionLabel": "Featured Products",
+    "heading": "Season's Best Sellers",
+    "viewAll": "View All",
+    "viewAllMobile": "View All Products"
+  },
+
+  "productCard": {
+    "addToCart": "Add to Cart",
+    "added": "Added"
+  },
+
+  "misc": {
+    "egp": "EGP"
+  },
+  "corporate": {
+    "sectionLabel": "For Companies & Organizations",
+    "heading": "Corporate Orders",
+    "headingAccent": "and Special Events",
+    "body": "We provide premium gift boxes in large quantities with elegant packaging and consistent quality for companies, schools, events, and corporate gifts.",
+    "benefits": [
+      "Custom branding with your logo",
+      "Perfect for companies & schools",
+      "Orders starting from 100 boxes",
+      "Special wholesale pricing"
+    ],
+    "ctaQuote": "Request a Quote",
+    "ctaWhatsapp": "Contact via WhatsApp",
+    "badge": {
+      "value": "5000+",
+      "label": "Corporate Orders Delivered"
+    }
+  },
+  "about": {
+    "sectionLabel": "About Factory",
+
+    "heading": "Crafting Premium Mawlid Sweets",
+
+    "headingAccent": "With Tradition & Quality",
+
+    "body1": "At Group Sweet, we believe that great sweets begin with premium ingredients. We carefully select the finest nuts, sesame, and natural ingredients to deliver authentic Egyptian flavors with consistent quality.",
+
+    "body2": "By combining traditional craftsmanship with modern manufacturing and packaging standards, we proudly serve families, gifts, and corporate customers.",
+
+    "highlights": [
+      "Premium Natural Ingredients",
+      "Fresh Daily Production",
+      "Luxury Packaging",
+      "Strict Quality Control",
+      "Competitive Prices",
+      "Fast Delivery"
+    ],
+
+    "badges": [
+      {
+        "label": "Natural Ingredients"
+      },
+      {
+        "label": "Guaranteed Quality"
+      },
+      {
+        "label": "15+ Years Experience"
+      }
+    ],
+
+    "experienceBadge": {
+      "value": "15+",
+      "label": "Years of Experience"
+    }
+  },
+  "whyUs": {
+    "sectionLabel": "Why Us",
+    "heading": "What Makes Us Different",
+    "subtext": "We combine authentic Egyptian tradition with premium quality in every product we make.",
+
+    "reasons": [
+      {
+        "title": "Fresh Daily Production",
+        "desc": "Our sweets are freshly prepared every day using premium natural ingredients."
+      },
+      {
+        "title": "Guaranteed Quality",
+        "desc": "We follow the highest quality and hygiene standards throughout production."
+      },
+      {
+        "title": "Luxury Packaging",
+        "desc": "Elegant gift packaging suitable for every occasion."
+      },
+      {
+        "title": "Competitive Wholesale Prices",
+        "desc": "Special prices and discounts for companies and bulk orders."
+      },
+      {
+        "title": "Fast Delivery",
+        "desc": "Fast shipping across Cairo and all Egyptian governorates."
+      },
+      {
+        "title": "15 Years of Experience",
+        "desc": "Over fifteen years of expertise crafting authentic Mawlid sweets."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Experience the Difference",
+    "body": "Enjoy premium Mawlid sweets crafted from the finest natural ingredients with elegant packaging and fast delivery.",
+    "button": "Order Now"
+  },
+  "testimonials": {
+    "sectionLabel": "Testimonials",
+    "heading": "What Our Customers Say",
+    "subtext": "Trusted by more than 5,200 satisfied customers",
+    "rating": "4.9",
+    "ratingLabel": "Out of 5 Stars",
+    "reviews": "5,200+",
+    "reviewsLabel": "Verified Reviews",
+    "items": [
+      {
+        "name": "Ahmed Mohamed",
+        "role": "Customer for 5 years",
+        "text": "One of the best Mawlid sweets I've ever tasted. Amazing flavor and premium packaging."
+      },
+      {
+        "name": "Fatma Abdelrahman",
+        "role": "Purchasing Manager",
+        "text": "We ordered corporate gifts and everything arrived on time with outstanding quality."
+      },
+      {
+        "name": "Mahmoud Ibrahim",
+        "role": "Gift Shop Owner",
+        "text": "Excellent prices and professional service every season."
+      },
+      {
+        "name": "Nora Hassan",
+        "role": "Home Customer",
+        "text": "Fresh products with the authentic traditional taste."
+      },
+      {
+        "name": "Omar Tarek",
+        "role": "Business Owner",
+        "text": "Our company gift boxes looked elegant and impressed everyone."
+      },
+      {
+        "name": "Sara Abdullah",
+        "role": "Returning Customer",
+        "text": "Highly recommended. Great quality and outstanding service."
+      }
+    ]
+  },
+  "footer": {
+    "description": "Premium Egyptian Mawlid sweets crafted with authentic recipes and exceptional quality.",
+    "quickLinksHeading": "Quick Links",
+    "quickLinks": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Products",
+        "href": "/products"
+      },
+
+      {
+        "label": "Corporate Orders",
+        "href": "/corporate-orders"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ],
+    "categoriesHeading": "Categories",
+    "categories": [
+      "Gift Boxes",
+      "Malban",
+      "Peanut Brittle",
+      "Sesame Candy",
+      "Chickpea Candy",
+      "Mixed Nuts"
+    ],
+    "contactHeading": "Contact",
+    "phone": "+20 100 000 0000",
+    "email": "info@groupsweet.com",
+    "address": "Cairo, Egypt",
+    "workingHoursLabel": "Working Hours",
+    "workingHours": ["Saturday - Thursday", "9:00 AM - 9:00 PM"],
+    "paymentLabel": "Payment Methods",
+    "paymentMethods": ["Visa", "MasterCard", "Meeza", "Cash"],
+    "copyright": "© 2026 Group Sweet. All Rights Reserved."
+  },
+  "cart": {
+    "heading": "Shopping Cart",
+    "items": "Items",
+    "summary": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "shippingFree": "Free",
+    "total": "Total",
+    "checkout": "Checkout",
+    "browseCta": "Browse Products",
+
+    "empty": {
+      "title": "Your cart is empty",
+      "sub": "Add some delicious products to your cart."
+    },
+
+    "whyTitle": "Why Order From Group Sweet?",
+
+    "features": [
+      "Fast shipping across Egypt",
+      "Fresh products made daily",
+      "Secure payment",
+      "Easy returns & exchanges"
+    ]
+  },
+  "checkout": {
+    "title": "Checkout",
+
+    "subtitle": "Enter your details to complete your order",
+
+    "customerInfo": "Customer Information",
+
+    "firstName": "First Name",
+
+    "lastName": "Last Name",
+
+    "phone": "Phone Number",
+
+    "email": "Email Address",
+
+    "city": "City",
+
+    "address": "Address",
+
+    "payment": "Payment Method",
+
+    "cash": "Cash on Delivery",
+
+    "card": "Credit / Debit Card",
+
+    "placeOrder": "Place Order"
+  },
+  "productDetails": {
+    "back": "Back to Products",
+    "share": "Share",
+    "quantity": "Quantity",
+    "total": "Total",
+    "weight": "Select Weight",
+    "addToCart": "Add to Cart",
+    "whatsapp": "Order via WhatsApp",
+
+    "relatedProducts": "Related Products",
+
+    "reviews": "Reviews",
+
+    "guaranteedQuality": "Guaranteed Quality",
+    "bestIngredients": "Finest quality sweets.",
+
+    "fastDelivery": "Fast Delivery",
+    "allGovernorates": "Available across Egypt.",
+
+    "easyReplacement": "Easy Replacement",
+    "replacement14Days": "Within 14 days.",
+
+    "shippingTitle": "Fast Shipping",
+    "shippingDesc": "Delivery across Egypt within 24–48 hours.",
+
+    "qualityTitle": "Guaranteed Quality",
+    "qualityDesc": "Freshly made every day using premium ingredients.",
+
+    "returnTitle": "Easy Returns",
+    "returnDesc": "Easy replacement and return according to our policy."
+  },
+
+  "productsPage": {
+    "heroTitle": "All Products",
+    "heroSubtitle": "Browse our complete collection of authentic Mawlid sweets",
+
+    "searchPlaceholder": "Search products...",
+
+    "filter": "Filter",
+
+    "sort": "Sort",
+
+    "sortOptions": {
+      "default": "Sort",
+      "popular": "Best Selling",
+      "priceLow": "Price: Low to High",
+      "priceHigh": "Price: High to Low"
+    },
+
+    "categories": {
+      "all": "All",
+      "giftBoxes": "Gift Boxes",
+      "sesame": "Sesame & Chickpea",
+      "malban": "Malban & Nuts"
+    },
+
+    "productsCount": "Products",
+
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+
+    "page": "Page",
+    "of": "of",
+
+    "view": {
+      "grid": "Grid",
+      "list": "List"
+    },
+
+    "results": {
+      "one": "Product",
+      "many": "Products"
+    },
+
+    "loading": "Loading products...",
+
+    "empty": {
+      "title": "No Products Found",
+      "description": "We couldn't find any products matching your search."
+    }
+  },
+  "corporatePage": {
+    "heading": "Corporate & Large Event Orders",
+    "subtext": "We provide comprehensive solutions for businesses, institutions, and large events with custom premium packaging and competitive wholesale pricing",
+    "formHeading": "Request a Quote",
+    "whatsappBtn": "Contact via WhatsApp",
+
+    "fields": {
+      "company": "Company Name",
+      "name": "Contact Person",
+      "phone": "Phone Number",
+      "email": "Email",
+      "quantity": "Required Quantity",
+      "date": "Delivery Date",
+      "notes": "Notes",
+      "submit": "Send Request"
+    },
+
+    "features": [
+      {
+        "title": "Wholesale Orders",
+        "desc": "Large quantities with special pricing."
+      },
+      {
+        "title": "Custom Branding",
+        "desc": "Your company logo on every package."
+      },
+      {
+        "title": "On-Time Delivery",
+        "desc": "We always deliver on schedule."
+      },
+      {
+        "title": "Gift Design",
+        "desc": "Luxury gift boxes for every occasion."
+      }
+    ]
+  },
+  "contactPage": {
+  "badge": "We're Happy To Help",
+  "heading": "Contact Us",
+  "subtext": "Have a question about our products or corporate orders? Our team is ready to help and will get back to you as soon as possible.",
+  "formHeading": "Send Us a Message",
+  "formSubtext": "Fill out the form below and we'll reply within 24 hours.",
+  "name": "Full Name",
+  "phone": "Phone Number",
+  "email": "Email Address",
+  "subject": "Subject",
+  "message": "Message",
+  "submit": "Send Message"
+}
 }

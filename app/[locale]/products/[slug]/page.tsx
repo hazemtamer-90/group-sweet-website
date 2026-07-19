@@ -1,8 +1,35 @@
-export default function ProductDetailsPage() {
+import { notFound } from "next/navigation";
+
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import ProductDetails from "@/components/products/ProductDetails";
+
+import { products } from "@/data/products";
+
+interface Props {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
+export default async function ProductDetailsPage({ params }: Props) {
+  const { slug } = await params;
+
+  const product = products.find((p) => p.slug === slug);
+
+  if (!product) {
+    notFound();
+  }
+
   return (
-    <main className="py-20 text-center">
-      <h1 className="text-4xl font-bold">Product Details</h1>
-      <p className="mt-4">Coming Soon...</p>
-    </main>
+    <>
+      <Header />
+
+      <main className="min-h-screen bg-[#FAF5E9]">
+        <ProductDetails product={product} />
+      </main>
+
+      <Footer />
+    </>
   );
 }

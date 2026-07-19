@@ -1,32 +1,34 @@
 "use client";
 
 import { useState } from "react";
+import CartDrawer from "./CartDrawer";
 import Image from "next/image";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 
 import { ShoppingCart, Search, Menu, X, Globe } from "lucide-react";
 
 import { useLocale, useTranslations } from "next-intl";
+import { useCartStore } from "@/store/cartStore";
 
-interface HeaderProps {
-  cartCount?: number;
-}
-
-export default function Header({ cartCount = 0 }: HeaderProps) {
+export default function Header() {
   const t = useTranslations("header");
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const cartCount = useCartStore((state) =>
+    state.items.reduce((total, item) => total + item.quantity, 0),
+  );
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
   const isArabic = locale === "ar";
   const switchLocale = () => {
-  router.replace(pathname, {
-    locale: locale === "ar" ? "en" : "ar",
-  });
-};
+    router.replace(pathname, {
+      locale: locale === "ar" ? "en" : "ar",
+    });
+  };
 
   return (
     <>
@@ -69,12 +71,7 @@ export default function Header({ cartCount = 0 }: HeaderProps) {
                 {t("products")}
               </Link>
 
-              <Link
-                href="/gifts"
-                className="text-[#2C1A0E] hover:text-[#670047] transition"
-              >
-                {t("gift")}
-              </Link>
+             
 
               <Link
                 href="/corporate"
@@ -115,9 +112,9 @@ export default function Header({ cartCount = 0 }: HeaderProps) {
 
               <button
                 onClick={() => setSearchOpen(!searchOpen)}
-                className="rounded-full p-2 hover:bg-[#EFE4C8] transition"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#E8D7B6] bg-white shadow-sm hover:bg-[#F8F1E3]"
               >
-                <Search size={20} className="text-[#2C1A0E]" />
+                <Search size={18} className="text-[#670047]" />
               </button>
 
               {/* WhatsApp */}
@@ -125,18 +122,21 @@ export default function Header({ cartCount = 0 }: HeaderProps) {
               <Link
                 href="https://wa.me/201000000000"
                 target="_blank"
-                className="hidden lg:flex items-center gap-2 bg-[#25D366] text-white px-5 py-2 rounded-full font-medium hover:bg-[#1fb357] transition"
+                className="hidden sm:flex h-11 items-center gap-2 rounded-full bg-[#25D366] px-4 text-white shadow-sm hover:bg-[#1EBE5D]"
               >
                 {t("whatsapp")}
               </Link>
 
               {/* Cart */}
 
-              <button className="relative rounded-full p-2 hover:bg-[#EFE4C8] transition">
-                <ShoppingCart size={21} className="text-[#2C1A0E]" />
+              <button
+                onClick={() => setCartOpen(true)}
+                className="relative flex h-11 w-11 items-center justify-center rounded-full border border-[#E8D7B6] bg-white shadow-sm transition hover:bg-[#F8F1E3]"
+              >
+                <ShoppingCart size={20} className="text-[#670047]" />
 
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -left-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#670047] text-[10px] font-bold text-white">
+                  <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-[#670047] text-[10px] font-bold text-white">
                     {cartCount}
                   </span>
                 )}
@@ -226,6 +226,7 @@ export default function Header({ cartCount = 0 }: HeaderProps) {
           )}
         </div>
       </header>
+      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
     </>
   );
 }

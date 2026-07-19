@@ -1,8 +1,13 @@
-export default function CorporatePage() {
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import CorporatePage from "@/components/corporate/CorporatePage";
+
+export default function Corporate() {
   return (
-    <main className="py-20 text-center">
-      <h1 className="text-4xl font-bold">Corporate Orders</h1>
-      <p className="mt-4">Coming Soon...</p>
-    </main>
+    <>
+      <Header />
+      <CorporatePage />
+      <Footer />
+    </>
   );
 }

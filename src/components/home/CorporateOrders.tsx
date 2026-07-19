@@ -1,53 +1,198 @@
-import { Button } from "@/components/ui/Button";
+"use client";
+
+import Image from "next/image";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+
+import {
+  Building2,
+  Package,
+  Users,
+  Star,
+  ArrowLeft
+} from "lucide-react";
+
+const images = [
+  "/images/products/semsmya.png",
+  "/images/products/foul.png",
+  "/images/products/malban.png",
+  "/images/products/homsya.png"
+];
+
+const icons = [
+  Package,
+  Users,
+  Building2,
+  Star
+];
 
 export default function CorporateOrders() {
-  return (
-    <section className="py-24 bg-[#670047]">
-      <div className="max-w-7xl mx-auto px-6">
+  const t = useTranslations("corporate");
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+  return (
+    <section className="relative overflow-hidden bg-[#2C1A0E] py-20 lg:py-24">
+
+      <div className="absolute inset-0 opacity-5 pattern-bg" />
+
+      <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-[#C9942A]/10 blur-3xl" />
+
+      <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[#670047]/10 blur-3xl" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-5">
+
+        <div className="grid items-center gap-14 lg:grid-cols-2">
+
+          {/* Content */}
 
           <div>
-            <span className="text-[#E9C46A] font-semibold">
-              طلبات الشركات
-            </span>
 
-            <h2 className="text-5xl font-bold text-white mt-4 leading-tight">
-              هدايا شركات
+            <div className="mb-4 inline-flex items-center gap-2 text-sm text-[#C9942A]">
+
+              <Building2 size={16} />
+
+              <span>{t("sectionLabel")}</span>
+
+            </div>
+
+            <h2 className="mb-5 text-4xl font-bold leading-tight text-white">
+
+              {t("heading")}
+
               <br />
-              بتصميم فاخر وجودة عالية
+
+              <span className="text-[#E8C472]">
+                {t("headingAccent")}
+              </span>
+
             </h2>
 
-            <p className="text-white/80 mt-6 leading-8 text-lg">
-              نوفر حلول متكاملة للشركات والمؤسسات تشمل علب هدايا
-              مخصصة، تغليف فاخر، وطباعة الهوية التجارية على العبوات،
-              مع إمكانية تنفيذ كميات كبيرة في وقت قياسي.
+            <p className="mb-8 max-w-xl leading-8 text-[#D4B896]">
+
+              {t("body")}
+
             </p>
 
-            <div className="flex gap-5 mt-10">
-              <Button size="lg">
-                اطلب عرض سعر
-              </Button>
+            <div className="mb-8 grid grid-cols-2 gap-4">            {t.raw("benefits").map((benefit: string, index: number) => {
+              const Icon = icons[index];
 
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-white text-white hover:bg-white hover:text-[#670047]"
-              >
-                تواصل معنا
-              </Button>
-            </div>
+              return (
+                <div
+                  key={index}
+                  className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3"
+                >
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#C9942A]/20">
+                    <Icon
+                      size={16}
+                      className="text-[#C9942A]"
+                    />
+                  </div>
+
+                  <span className="text-sm text-[#E8D7BF]">
+                    {benefit}
+                  </span>
+                </div>
+              );
+            })}
           </div>
 
-          <div className="flex justify-center">
-            <div className="w-[450px] h-[380px] rounded-[40px] bg-white/10 border border-white/20 flex items-center justify-center text-white text-xl">
-              صورة علب الهدايا
+          <div className="flex flex-col gap-4 sm:flex-row">
+
+            <Link
+              href="/contact"
+              className="flex items-center justify-center gap-2 rounded-full bg-[#C9942A] px-8 py-4 font-semibold text-[#2C1A0E] transition hover:scale-105"
+            >
+              {t("ctaQuote")}
+              <ArrowLeft size={17} />
+            </Link>
+
+            <Link
+              href="https://wa.me/201000000000"
+              target="_blank"
+              className="flex items-center justify-center rounded-full bg-[#25D366] px-8 py-4 font-semibold text-white transition hover:bg-[#20b558]"
+            >
+              {t("ctaWhatsapp")}
+            </Link>
+
+          </div>
+
+        </div>
+
+        {/* Images */}
+
+        <div className="relative hidden lg:block">
+
+          <div className="grid grid-cols-2 gap-4">            <div className="space-y-4">
+
+              <div className="relative h-52 overflow-hidden rounded-3xl">
+
+                <Image
+                  src={images[0]}
+                  alt="Semsmya"
+                  fill
+                  className="object-cover"
+                />
+
+              </div>
+
+              <div className="relative h-36 overflow-hidden rounded-3xl">
+
+                <Image
+                  src={images[1]}
+                  alt="Foul"
+                  fill
+                  className="object-cover"
+                />
+
+              </div>
+
             </div>
+
+            <div className="mt-10 space-y-4">
+
+              <div className="relative h-36 overflow-hidden rounded-3xl">
+
+                <Image
+                  src={images[2]}
+                  alt="Malban"
+                  fill
+                  className="object-cover"
+                />
+
+              </div>
+
+              <div className="relative h-52 overflow-hidden rounded-3xl">
+
+                <Image
+                  src={images[3]}
+                  alt="Homsya"
+                  fill
+                  className="object-cover"
+                />
+
+              </div>
+
+            </div>
+
+          </div>
+
+                    <div className="absolute -bottom-5 right-6 rounded-3xl bg-[#C9942A] px-6 py-4 text-white shadow-2xl">
+
+            <div className="text-3xl font-bold">
+              {t("badge.value")}
+            </div>
+
+            <div className="text-sm opacity-90">
+              {t("badge.label")}
+            </div>
+
           </div>
 
         </div>
 
       </div>
+
+    </div>
+
     </section>
   );
 }
