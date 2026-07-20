@@ -148,7 +148,7 @@ export default function CartPage() {
                 </div>
               );
             })}
-          </div>{" "}
+          </div>
           {/* Summary */}
           <div className="h-fit rounded-3xl border border-[rgba(139,90,43,0.10)] bg-white p-6 shadow-sm">
             <h2 className="mb-6 text-2xl font-bold text-[#2C1A0E]">
@@ -213,11 +213,11 @@ export default function CartPage() {
                 <li>✓ استبدال واسترجاع بسهولة</li>
               </ul>
             </div>
-          </div>{" "}
+          </div>
           {/* نهاية Summary Card */}
-        </div>{" "}
+        </div>
         {/* نهاية Grid */}
-      </div>{" "}
+      </div>
       {/* نهاية Container */}
     </main>
   );

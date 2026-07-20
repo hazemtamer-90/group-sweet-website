@@ -129,7 +129,7 @@ export default function CorporatePage() {
             },
           )}
         </div>
-      </section>{" "}
+      </section>
       {/* Packages */}
       <section className="mx-auto max-w-7xl px-6 pb-20">
         <h2 className="mb-12 text-center text-4xl font-bold text-[#2C1A0E]">
@@ -269,7 +269,7 @@ export default function CorporatePage() {
             </div>
           ))}
         </div>
-      </section>{" "}
+      </section>
       {/* Quote Form */}
       <section id="quote-form" className="mx-auto max-w-3xl px-6 pb-24">
         <div className="rounded-[32px] border border-[#E8D7B6] bg-white p-10 shadow-sm">
@@ -328,7 +328,7 @@ export default function CorporatePage() {
               </div>
             </div>
             <div className="grid gap-5 md:grid-cols-2">
-              {" "}
+              
               <div>
                 <label className="mb-2 block font-semibold text-[#2C1A0E]">
                   {locale === "ar" ? "رقم الهاتف *" : "Phone Number *"}
@@ -439,7 +439,7 @@ export default function CorporatePage() {
                 }
                 className="w-full resize-none rounded-2xl border border-[#D9C6A5] bg-[#FAF5E9] px-5 py-4 outline-none transition focus:border-[#670047]"
               />
-            </div>{" "}
+            </div>
             <button
               type="submit"
               className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#670047] py-4 text-lg font-semibold text-white transition hover:bg-[#7D0056]"

@@ -103,7 +103,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div className="mb-1 text-xs text-[#C9942A]">{displayCategory}</div>
           <h3 className="mb-2 line-clamp-2 text-base font-bold leading-snug text-[#2C1A0E]">
             {displayName}
-          </h3>{" "}
+          </h3>
           {/* Rating */}
           <div className="mb-3 flex items-center gap-1.5">
             <div className="flex items-center gap-0.5">

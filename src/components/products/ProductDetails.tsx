@@ -71,7 +71,7 @@ export default function ProductDetails({ product }: Props) {
       </div>
 
       <div className="grid gap-14 lg:grid-cols-2">
-        {" "}
+        
         <div>
           <div className="relative overflow-hidden rounded-3xl bg-white border border-[#E8D7B6]">
             <Image

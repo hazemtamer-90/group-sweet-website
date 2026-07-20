@@ -107,7 +107,7 @@ export default function Hero() {
               <Building2 size={18} />
               {t("ctaCorporate")}
             </Link>
-          </div>{" "}
+          </div>
           <div className="mt-6 md:mt-8 flex flex-wrap justify-center gap-x-6 md:gap-x-10 lg:gap-x-12 gap-y-4 border-t border-white/20 pt-5">
             {stats.map((item) => (
               <div key={item.label} className="min-w-[90px] text-center">
@@ -122,7 +122,7 @@ export default function Hero() {
             ))}
           </div>
         </div>
-      </div>{" "}
+      </div>
       {/* Product thumbnails */}
       <div className="absolute bottom-0 left-0 right-0 hidden lg:block bg-gradient-to-t from-[#1A0F07] to-transparent pb-10 pt-8 sm:block">
         <div className="mx-auto flex max-w-7xl items-end gap-3 px-6">
