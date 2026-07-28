@@ -85,10 +85,10 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link href={`/products/${product.slug}`} prefetch>
-      <div className="group relative overflow-hidden rounded-2xl border border-[rgba(139,90,43,0.10)] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
+      <div className="group relative flex h-[300px] flex-col overflow-hidden rounded-2xl border border-[rgba(139,90,43,0.10)] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
         {/* Image */}
 
-        <div className="relative h-56 overflow-hidden bg-[#F5EDD6]">
+        <div className="relative h-[150px] shrink-0 overflow-hidden bg-[#F5EDD6]">
           <Image
             src={product.image}
             alt={displayName}
@@ -135,12 +135,16 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         {/* Content */}
 
-        <div className="p-4">
-          <div className="mb-1 text-xs text-[#C9942A]">{displayCategory}</div>
-          <h3 className="mb-2 line-clamp-2 text-base font-bold leading-snug text-[#2C1A0E]">
+        <div className="flex h-[150px] flex-col p-2.5">
+          <div className="mb-0.5 text-[11px] text-[#C9942A]">
+            {displayCategory}
+          </div>
+
+          <h3 className="min-h-[40px] line-clamp-2 break-words text-[15px] font-bold leading-5 text-[#2C1A0E]">
             {displayName}
           </h3>
-          <div className="mb-3 flex items-center gap-1.5">
+
+          <div className="mb-2 flex items-center gap-1.5">
             <div className="flex items-center gap-0.5">
               {[...Array(5)].map((_, i) => (
                 <Star
@@ -157,32 +161,47 @@ export default function ProductCard({ product }: ProductCardProps) {
 
             <span className="text-xs text-[#7A5C3A]">({product.reviews})</span>
           </div>
-          <div className="mb-4 flex items-center gap-2">
-            <span className="text-lg font-bold text-[#670047]">
-              {product.price} {misc("egp")}
-            </span>
 
-            {product.originalPrice && (
-              <span className="text-xs text-[#7A5C3A] line-through">
-                {product.originalPrice}
-              </span>
-            )}
-          </div>{" "}
-          {/* Add To Cart */}
-          <button
-            onClick={handleAddToCart}
-            className={`flex h-10 w-full items-center justify-center gap-1.5 rounded-full text-xs font-semibold transition-all duration-300 ${
-              added
-                ? "bg-[#4A6741] text-white"
-                : "bg-[#670047] text-white hover:bg-[#7A0052]"
+          <div
+            className={`mt-auto flex items-end ${
+              locale === "ar"
+                ? "justify-between flex-row-reverse"
+                : "justify-between"
             }`}
           >
-            <ShoppingCart size={13} />
+            {/* Price */}
+            <div
+              className={`flex flex-col whitespace-nowrap ${
+                locale === "ar" ? "items-end" : "items-start"
+              }`}
+            >
+              <span className="text-[17px] font-bold text-[#670047]">
+                {product.price} {misc("egp")}
+              </span>
 
-            <span className="leading-none">
-              {added ? t("added") : t("addToCart")}
-            </span>
-          </button>
+              {product.originalPrice && (
+                <span className="text-[11px] text-[#7A5C3A] line-through">
+                  {product.originalPrice}
+                </span>
+              )}
+            </div>
+
+            {/* Add To Cart */}
+            <button
+              onClick={handleAddToCart}
+              className={`flex h-8 w-[82px] shrink-0 items-center justify-center gap-1 rounded-full text-[10px] font-semibold transition-all duration-300 ${
+                added
+                  ? "bg-[#4A6741] text-white"
+                  : "bg-[#670047] text-white hover:bg-[#7A0052]"
+              }`}
+            >
+              <ShoppingCart size={12} />
+
+              <span className="whitespace-nowrap">
+                {added ? t("added") : t("addToCart")}
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </Link>

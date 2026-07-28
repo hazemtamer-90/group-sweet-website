@@ -1,0 +1,76 @@
+.form {
+  --input-focus: #670047;
+  --font-color: #3b2a24;
+  --font-color-sub: #8b6b47;
+  --bg-color: #fffdf8;
+  --main-color: #670047;
+
+  width: 360px;
+  padding: 30px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-radius: 20px;
+  border: 2px solid var(--main-color);
+  box-shadow: 8px 8px var(--main-color);
+}
+
+.title {
+  color: var(--font-color);
+  font-size: 30px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.title span {
+  display: block;
+  margin-top: 8px;
+  color: var(--font-color-sub);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  height: 52px;
+  border-radius: 12px;
+  border: 2px solid var(--main-color);
+  background: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  padding: 0 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000; /* لون الكتابة */
+  caret-color: #000000; /* لون المؤشر */
+  outline: none;
+}
+.input::placeholder {
+  color: #888888;
+  opacity: 1;
+}
+
+.input:focus {
+  border-color: var(--input-focus);
+}
+
+.buttonConfirm {
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 12px;
+  background: #670047;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.buttonConfirm:hover {
+  background: #7a0052;
+}
+
+.buttonConfirm:active {
+  transform: scale(0.97);
+}
