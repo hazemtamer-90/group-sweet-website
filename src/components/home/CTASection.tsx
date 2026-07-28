@@ -24,6 +24,7 @@ export default function CTASection() {
             <Link
               href="/products"
               className="inline-flex items-center justify-center rounded-full bg-[#C9942A] px-10 py-4 text-lg font-semibold text-[#2C1A0E] transition hover:scale-105 hover:bg-[#d8a52b]"
+              prefetch
             >
               {t("button")}
             </Link>

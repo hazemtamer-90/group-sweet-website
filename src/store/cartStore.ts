@@ -1,20 +1,25 @@
 import { create } from "zustand";
 import type { Product } from "@/data/products";
 
-interface CartItem extends Product {
+export interface CartItem extends Product {
   quantity: number;
+  selectedWeight: string;
 }
 
 interface CartStore {
   items: CartItem[];
 
-  addToCart: (product: Product) => void;
+  addToCart: (
+    product: Product,
+    quantity: number,
+    selectedWeight: string
+  ) => void;
 
-  removeFromCart: (id: number) => void;
+  removeFromCart: (id: number, weight?: string) => void;
 
-  increaseQuantity: (id: number) => void;
+  increaseQuantity: (id: number, weight?: string) => void;
 
-  decreaseQuantity: (id: number) => void;
+  decreaseQuantity: (id: number, weight?: string) => void;
 
   clearCart: () => void;
 }
@@ -22,45 +27,71 @@ interface CartStore {
 export const useCartStore = create<CartStore>((set) => ({
   items: [],
 
-  addToCart: (product) =>
+  addToCart: (product, quantity, selectedWeight) =>
     set((state) => {
-      const existing = state.items.find((item) => item.id === product.id);
+      const existing = state.items.find(
+        (item) =>
+          item.id === product.id &&
+          item.selectedWeight === selectedWeight
+      );
 
       if (existing) {
         return {
           items: state.items.map((item) =>
-            item.id === product.id
-              ? { ...item, quantity: item.quantity + 1 }
+            item.id === product.id &&
+            item.selectedWeight === selectedWeight
+              ? {
+                  ...item,
+                  quantity: item.quantity + quantity,
+                }
               : item
           ),
         };
       }
 
       return {
-        items: [...state.items, { ...product, quantity: 1 }],
+        items: [
+          ...state.items,
+          {
+            ...product,
+            quantity,
+            selectedWeight,
+          },
+        ],
       };
     }),
 
-  removeFromCart: (id) =>
+  removeFromCart: (id, weight) =>
     set((state) => ({
-      items: state.items.filter((item) => item.id !== id),
+      items: state.items.filter(
+        (item) =>
+          !(item.id === id && item.selectedWeight === weight)
+      ),
     })),
 
-  increaseQuantity: (id) =>
+  increaseQuantity: (id, weight) =>
     set((state) => ({
       items: state.items.map((item) =>
-        item.id === id
-          ? { ...item, quantity: item.quantity + 1 }
+        item.id === id &&
+        item.selectedWeight === weight
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+            }
           : item
       ),
     })),
 
-  decreaseQuantity: (id) =>
+  decreaseQuantity: (id, weight) =>
     set((state) => ({
       items: state.items
         .map((item) =>
-          item.id === id
-            ? { ...item, quantity: item.quantity - 1 }
+          item.id === id &&
+          item.selectedWeight === weight
+            ? {
+                ...item,
+                quantity: item.quantity - 1,
+              }
             : item
         )
         .filter((item) => item.quantity > 0),

@@ -100,6 +100,7 @@ export default function CorporateOrders() {
             <Link
               href="/contact"
               className="flex items-center justify-center gap-2 rounded-full bg-[#C9942A] px-8 py-4 font-semibold text-[#2C1A0E] transition hover:scale-105"
+              prefetch
             >
               {t("ctaQuote")}
               <ArrowLeft size={17} />
@@ -109,6 +110,7 @@ export default function CorporateOrders() {
               href="https://wa.me/201000000000"
               target="_blank"
               className="flex items-center justify-center rounded-full bg-[#25D366] px-8 py-4 font-semibold text-white transition hover:bg-[#20b558]"
+              prefetch
             >
               {t("ctaWhatsapp")}
             </Link>

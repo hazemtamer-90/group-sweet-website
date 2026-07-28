@@ -1,8 +1,12 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
+
 import { routing } from "@/i18n/routing";
+
 import AdminButton from "@/components/AdminButton";
+import WishlistHydration from "@/components/providers/WishlistHydration";
+import Toast from "@/components/ui/Toast";
 
 export default async function LocaleLayout({
   children,
@@ -20,13 +24,20 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-          <AdminButton />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages}>
+      <WishlistHydration />
+
+      <div
+        lang={locale}
+        dir={locale === "ar" ? "rtl" : "ltr"}
+        className="min-h-screen"
+      >
+        {children}
+
+        <Toast />
+
+        <AdminButton />
+      </div>
+    </NextIntlClientProvider>
   );
 }

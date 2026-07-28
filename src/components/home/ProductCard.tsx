@@ -1,10 +1,15 @@
 "use client";
+
 import { Link } from "@/i18n/navigation";
 import { useState } from "react";
 import Image from "next/image";
 import { ShoppingCart, Star, Heart } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+
 import { useCartStore } from "@/store/cartStore";
+import { useWishlist } from "@/store/wishlistStore";
+import { useToastStore } from "@/store/toastStore";
+import { useWishlistHydration } from "../../hooks/useWishlistHydration";
 
 import type { Product } from "../../data/products";
 
@@ -18,7 +23,13 @@ export default function ProductCard({ product }: ProductCardProps) {
   const t = useTranslations("productCard");
   const misc = useTranslations("misc");
 
-  const [liked, setLiked] = useState(false);
+  const wishlist = useWishlist();
+  const toast = useToastStore();
+
+  const hydrated = useWishlistHydration();
+
+  const liked = hydrated ? wishlist.exists(product.id) : false;
+
   const [added, setAdded] = useState(false);
 
   const addToCart = useCartStore((state) => state.addToCart);
@@ -34,7 +45,11 @@ export default function ProductCard({ product }: ProductCardProps) {
     e.preventDefault();
     e.stopPropagation();
 
-    addToCart(product);
+    addToCart(product, 1, "1");
+
+    toast.show(
+      locale === "ar" ? "تمت إضافة المنتج إلى السلة" : "Product added to cart",
+    );
 
     setAdded(true);
 
@@ -43,12 +58,33 @@ export default function ProductCard({ product }: ProductCardProps) {
     }, 1500);
   };
 
+  const handleWishlist = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!hydrated) return;
+
+    const wasLiked = wishlist.exists(product.id);
+
+    wishlist.toggle(product);
+
+    toast.show(
+      wasLiked
+        ? locale === "ar"
+          ? "تمت إزالة المنتج من المفضلة"
+          : "Removed from wishlist"
+        : locale === "ar"
+          ? "تمت إضافة المنتج إلى المفضلة"
+          : "Added to wishlist",
+    );
+  };
+
   const discount = product.originalPrice
     ? Math.round((1 - product.price / product.originalPrice) * 100)
     : null;
 
   return (
-    <Link href={`/products/${product.slug}`}>
+    <Link href={`/products/${product.slug}`} prefetch>
       <div className="group relative overflow-hidden rounded-2xl border border-[rgba(139,90,43,0.10)] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
         {/* Image */}
 
@@ -80,19 +116,19 @@ export default function ProductCard({ product }: ProductCardProps) {
             </div>
           )}
 
+          {/* ❤️ Wishlist Button */}
+
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setLiked(!liked);
-            }}
-            className="absolute bottom-3 left-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 opacity-0 transition-all duration-300 group-hover:opacity-100 hover:scale-110"
+            onClick={handleWishlist}
+            className={`absolute bottom-3 left-3 z-20 flex h-10 w-10 items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
+              liked
+                ? "bg-[#670047] text-white"
+                : "bg-white/95 text-[#7A5C3A] opacity-100 md:opacity-0 md:group-hover:opacity-100 hover:scale-110"
+            }`}
           >
             <Heart
-              size={16}
-              className={
-                liked ? "fill-[#670047] text-[#670047]" : "text-[#7A5C3A]"
-              }
+              size={17}
+              className={liked ? "fill-white text-white" : "text-[#7A5C3A]"}
             />
           </button>
         </div>
@@ -104,7 +140,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           <h3 className="mb-2 line-clamp-2 text-base font-bold leading-snug text-[#2C1A0E]">
             {displayName}
           </h3>
-          {/* Rating */}
           <div className="mb-3 flex items-center gap-1.5">
             <div className="flex items-center gap-0.5">
               {[...Array(5)].map((_, i) => (
@@ -122,7 +157,6 @@ export default function ProductCard({ product }: ProductCardProps) {
 
             <span className="text-xs text-[#7A5C3A]">({product.reviews})</span>
           </div>
-          {/* Price */}
           <div className="mb-4 flex items-center gap-2">
             <span className="text-lg font-bold text-[#670047]">
               {product.price} {misc("egp")}
@@ -133,7 +167,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 {product.originalPrice}
               </span>
             )}
-          </div>
+          </div>{" "}
           {/* Add To Cart */}
           <button
             onClick={handleAddToCart}

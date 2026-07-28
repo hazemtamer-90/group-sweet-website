@@ -6,27 +6,38 @@ import { Link } from "@/i18n/navigation";
 
 const categories = [
   {
+    image: "/images/products/halawa1.png",
+    href: "/products?category=coconut",
+  },
+  {
+    image: "/images/products/halawa2.png",
+    href: "/products?category=malban",
+  },
+  {
+    image: "/images/products/halawa3.png",
+    href: "/products?category=nougat",
+  },
+  {
+    image: "/images/products/halawa4.png",
+    href: "/products?category=dry",
+  },
+  {
+    image: "/images/products/halawa5.png",
+    href: "/products?category=round",
+  },
+  {
     image: "/images/products/semsmya.png",
-    href: "/products",
+    href: "/products?category=boxes",
   },
   {
     image: "/images/products/homsya.png",
-    href: "/products",
-  },
-  {
-    image: "/images/products/malban.png",
-    href: "/products",
+    href: "/products?category=cream",
   },
   {
     image: "/images/products/foul.png",
-    href: "/products",
-  },
-  {
-    image: "/images/products/halawa1.png",
     href: "/corporate",
   },
 ];
-
 export default function Categories() {
   const t = useTranslations("categories");
 
@@ -53,12 +64,13 @@ export default function Categories() {
         </div>
 
         {/* Categories */}
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-6">
           {categories.map((category, index) => (
             <Link
               key={index}
               href={category.href}
               className="group overflow-hidden rounded-3xl bg-white border border-[#EFE1C7] shadow-sm hover:shadow-xl transition-all duration-300"
+              prefetch
             >
               <div className="relative h-48 overflow-hidden">
                 <Image

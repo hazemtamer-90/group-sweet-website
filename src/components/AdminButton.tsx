@@ -23,6 +23,7 @@ export default function AdminButton() {
       shadow-2xl
       hover:bg-violet-700
       transition
+      prefetch
       "
     >
       <Shield size={18} />

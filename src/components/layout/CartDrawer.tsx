@@ -97,6 +97,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                 href="/products"
                 onClick={onClose}
                 className="rounded-full bg-[#670047] px-6 py-3 text-white transition hover:bg-[#7A0052]"
+                prefetch
               >
                 {t("browseCta")}
               </Link>
@@ -108,7 +109,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
                 return (
                   <div
-                    key={item.id}
+                    key={`${item.id}-${item.selectedWeight}`}
                     className="flex gap-4 rounded-2xl border border-[#E8D7B6] bg-white p-4"
                   >
                     <div className="relative h-20 w-20 overflow-hidden rounded-xl bg-[#F5EDD6]">
@@ -124,10 +125,25 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                       <h3 className="font-semibold text-[#2C1A0E]">
                         {displayName}
                       </h3>
+                      <p className="text-sm text-[#7A5C3A]">
+                        {locale === "ar"
+                          ? item.selectedWeight === "0.25"
+                            ? "الوزن: ربع كيلو"
+                            : item.selectedWeight === "0.5"
+                              ? "الوزن: نصف كيلو"
+                              : "الوزن: كيلو"
+                          : item.selectedWeight === "0.25"
+                            ? "Weight: 250g"
+                            : item.selectedWeight === "0.5"
+                              ? "Weight: 500g"
+                              : "Weight: 1kg"}
+                      </p>
 
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => decreaseQuantity(item.id)}
+                          onClick={() =>
+                            decreaseQuantity(item.id, item.selectedWeight)
+                          }
                           className="rounded-full bg-[#EFE4C8] p-1"
                         >
                           <Minus size={14} />
@@ -136,20 +152,30 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                         <span>{item.quantity}</span>
 
                         <button
-                          onClick={() => increaseQuantity(item.id)}
+                          onClick={() =>
+                            increaseQuantity(item.id, item.selectedWeight)
+                          }
                           className="rounded-full bg-[#670047] p-1 text-white"
                         >
                           <Plus size={14} />
                         </button>
                       </div>
 
-                      <div className="font-bold text-[#670047]">
-                        {item.price * item.quantity} {misc("egp")}
+                      <div>
+                        <div className="text-sm text-[#7A5C3A]">
+                          {item.quantity} × {item.price} {misc("egp")}
+                        </div>
+
+                        <div className="font-bold text-[#670047]">
+                          {item.price * item.quantity} {misc("egp")}
+                        </div>
                       </div>
                     </div>
 
                     <button
-                      onClick={() => removeFromCart(item.id)}
+                      onClick={() =>
+                        removeFromCart(item.id, item.selectedWeight)
+                      }
                       className="self-start rounded-full p-2 hover:bg-red-50"
                     >
                       <Trash2 size={16} />
@@ -175,6 +201,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               href="/cart"
               onClick={onClose}
               className="flex w-full items-center justify-center gap-2 rounded-full bg-[#670047] py-3 font-semibold text-white transition hover:bg-[#7A0052]"
+              prefetch
             >
               <span>{t("checkout")}</span>
               <ArrowIcon size={18} />

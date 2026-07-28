@@ -1,21 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/home/ProductCard";
 import { products } from "@/data/products";
 import { Grid2X2, List } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function ProductsPage() {
+  const searchParams = useSearchParams();
   const t = useTranslations("productsPage");
-
+  const locale = useLocale();
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
   const [view, setView] = useState<"grid" | "list">("grid");
   const [sortBy, setSortBy] = useState("default");
   const [currentPage, setCurrentPage] = useState(1);
+  useEffect(() => {
+    const category = searchParams.get("category");
+
+    if (category) {
+      setActiveCategory(category);
+    }
+  }, [searchParams]);
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
       product.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -28,16 +37,32 @@ export default function ProductsPage() {
         matchesCategory = true;
         break;
 
-      case "giftBoxes":
-        matchesCategory = product.id === 5;
-        break;
-
-      case "sesame":
-        matchesCategory = [2, 3, 4, 6, 7, 9].includes(product.id);
+      case "coconut":
+        matchesCategory = product.category === "جوز الهند";
         break;
 
       case "malban":
-        matchesCategory = [1, 8, 10, 11, 12, 13].includes(product.id);
+        matchesCategory = product.category === "ملبن";
+        break;
+
+      case "nougat":
+        matchesCategory = product.category === "نوجا";
+        break;
+
+      case "dry":
+        matchesCategory = product.category === "نواشف";
+        break;
+
+      case "round":
+        matchesCategory = product.category === "مدورات";
+        break;
+
+      case "boxes":
+        matchesCategory = product.category === "علب";
+        break;
+
+      case "cream":
+        matchesCategory = product.category === "قشطة";
         break;
 
       default:
@@ -50,26 +75,45 @@ export default function ProductsPage() {
   const categories = [
     {
       id: "all",
-      name: t("categories.all"),
+      name: locale === "ar" ? "الكل" : "All",
       count: products.length,
     },
     {
-      id: "giftBoxes",
-      name: t("categories.giftBoxes"),
-      count: products.filter((p) => p.category === "علب حلاوة المولد").length,
-    },
-    {
-      id: "sesame",
-      name: t("categories.sesame"),
-      count: products.filter((p) => p.category === "مشبك وسمسمية").length,
+      id: "coconut",
+      name: locale === "ar" ? "جوز الهند" : "Coconut",
+      count: products.filter((p) => p.category === "جوز الهند").length,
     },
     {
       id: "malban",
-      name: t("categories.malban"),
-      count: products.filter((p) => p.category === "ملبن ومكسرات").length,
+      name: locale === "ar" ? "ملبن" : "Malban",
+      count: products.filter((p) => p.category === "ملبن").length,
+    },
+    {
+      id: "nougat",
+      name: locale === "ar" ? "نوجا" : "Nougat",
+      count: products.filter((p) => p.category === "نوجا").length,
+    },
+    {
+      id: "dry",
+      name: locale === "ar" ? "نواشف" : "Dry Sweets",
+      count: products.filter((p) => p.category === "نواشف").length,
+    },
+    {
+      id: "round",
+      name: locale === "ar" ? "مدورات" : "Round Sweets",
+      count: products.filter((p) => p.category === "مدورات").length,
+    },
+    {
+      id: "boxes",
+      name: locale === "ar" ? "علب" : " Boxes",
+      count: products.filter((p) => p.category === "علب").length,
+    },
+    {
+      id: "cream",
+      name: locale === "ar" ? "قشطة" : "Cream",
+      count: products.filter((p) => p.category === "قشطة").length,
     },
   ];
-
   switch (sortBy) {
     case "popular":
       sortedProducts.sort((a, b) => b.reviews - a.reviews);

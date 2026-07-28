@@ -12,13 +12,40 @@ type QuickLink = {
   href: string;
 };
 
-
-
 export default function Footer() {
   const t = useTranslations("footer");
 
   const quickLinks = t.raw("quickLinks") as QuickLink[];
-  const categories = t.raw("categories") as string[];
+  const categories = [
+    {
+      name: "جوز الهند",
+      href: "/products?category=coconut",
+    },
+    {
+      name: "ملبن",
+      href: "/products?category=malban",
+    },
+    {
+      name: "نوجا",
+      href: "/products?category=nougat",
+    },
+    {
+      name: "نواشف",
+      href: "/products?category=dry",
+    },
+    {
+      name: "مدورات",
+      href: "/products?category=round",
+    },
+    {
+      name: "علب",
+      href: "/products?category=boxes",
+    },
+    {
+      name: "قشطة",
+      href: "/products?category=cream",
+    },
+  ];
   const workingHours = t.raw("workingHours") as string[];
   const paymentMethods = t.raw("paymentMethods") as string[];
 
@@ -26,7 +53,6 @@ export default function Footer() {
     <footer className="bg-[#1A0F07] text-[#D4B896]">
       <div className="mx-auto max-w-7xl px-5 py-14">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-
           {/* Brand */}
 
           <div>
@@ -40,29 +66,29 @@ export default function Footer() {
 
             <p className="mb-6 max-w-xs text-sm leading-7 text-[#D4B896]/80">
               {t("description")}
-            </p><div className="flex gap-3">
-  <a
-    href="#"
-    className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#C9942A]"
-  >
-    <FaFacebookF size={16} />
-  </a>
+            </p>
+            <div className="flex gap-3">
+              <a
+                href="#"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#C9942A]"
+              >
+                <FaFacebookF size={16} />
+              </a>
 
-  <a
-    href="#"
-    className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#C9942A]"
-  >
-    <FaInstagram size={16} />
-  </a>
+              <a
+                href="#"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#C9942A]"
+              >
+                <FaInstagram size={16} />
+              </a>
 
-  <a
-    href="#"
-    className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#C9942A]"
-  >
-    <FaXTwitter size={16} />
-  </a>
-</div>
-
+              <a
+                href="#"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#C9942A]"
+              >
+                <FaXTwitter size={16} />
+              </a>
+            </div>
           </div>
 
           <div>
@@ -76,6 +102,7 @@ export default function Footer() {
                   key={link.href}
                   href={link.href}
                   className="block text-sm transition hover:text-[#C9942A]"
+                  prefetch
                 >
                   {link.label}
                 </Link>
@@ -91,11 +118,11 @@ export default function Footer() {
             <div className="space-y-3">
               {categories.map((item) => (
                 <Link
-                  key={item}
-                  href="/products"
+                  key={item.href}
+                  href={item.href}
                   className="block text-sm transition hover:text-[#C9942A]"
                 >
-                  {item}
+                  {item.name}
                 </Link>
               ))}
             </div>
@@ -135,10 +162,7 @@ export default function Footer() {
               </h4>
 
               {workingHours.map((item) => (
-                <p
-                  key={item}
-                  className="text-xs leading-6 text-[#D4B896]/70"
-                >
+                <p key={item} className="text-xs leading-6 text-[#D4B896]/70">
                   {item}
                 </p>
               ))}
@@ -150,9 +174,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 py-6 md:flex-row">
           <div className="flex items-center gap-3">
-            <span className="text-xs">
-              {t("paymentLabel")}
-            </span>
+            <span className="text-xs">{t("paymentLabel")}</span>
 
             {paymentMethods.map((item) => (
               <span
@@ -164,9 +186,7 @@ export default function Footer() {
             ))}
           </div>
 
-          <p className="text-xs text-[#D4B896]/50">
-            {t("copyright")}
-          </p>
+          <p className="text-xs text-[#D4B896]/50">{t("copyright")}</p>
         </div>
       </div>
     </footer>

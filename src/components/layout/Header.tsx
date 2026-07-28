@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import CartDrawer from "./CartDrawer";
+import WishlistDrawer from "./WishlistDrawer";
 import Image from "next/image";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 
-import { ShoppingCart, Search, Menu, X, Globe } from "lucide-react";
+import { ShoppingCart, Search, Menu, X, Globe, Heart } from "lucide-react";
 
 import { useLocale, useTranslations } from "next-intl";
 import { useCartStore } from "@/store/cartStore";
+import { useWishlist } from "@/store/wishlistStore";
 
 export default function Header() {
   const t = useTranslations("header");
@@ -18,10 +20,11 @@ export default function Header() {
   const cartCount = useCartStore((state) =>
     state.items.reduce((total, item) => total + item.quantity, 0),
   );
-
+  const wishlistCount = useWishlist((state) => state.items.length);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [wishlistOpen, setWishlistOpen] = useState(false);
 
   const isArabic = locale === "ar";
   const switchLocale = () => {
@@ -60,6 +63,7 @@ export default function Header() {
               <Link
                 href="/"
                 className="font-medium text-[#670047] border-b-2 border-[#C9942A] pb-1"
+                prefetch
               >
                 {t("home")}
               </Link>
@@ -67,6 +71,7 @@ export default function Header() {
               <Link
                 href="/products"
                 className="text-[#2C1A0E] hover:text-[#670047] transition"
+                prefetch
               >
                 {t("products")}
               </Link>
@@ -74,6 +79,7 @@ export default function Header() {
               <Link
                 href="/corporate"
                 className="text-[#2C1A0E] hover:text-[#670047] transition"
+                prefetch
               >
                 {t("corporate")}
               </Link>
@@ -81,6 +87,7 @@ export default function Header() {
               <Link
                 href="/about"
                 className="text-[#2C1A0E] hover:text-[#670047] transition"
+                prefetch
               >
                 {t("about")}
               </Link>
@@ -88,6 +95,7 @@ export default function Header() {
               <Link
                 href="/contact"
                 className="text-[#2C1A0E] hover:text-[#670047] transition"
+                prefetch
               >
                 {t("contact")}
               </Link>
@@ -121,10 +129,25 @@ export default function Header() {
                 href="https://wa.me/201000000000"
                 target="_blank"
                 className="hidden sm:flex h-11 items-center gap-2 rounded-full bg-[#25D366] px-4 text-white shadow-sm hover:bg-[#1EBE5D]"
+                prefetch
               >
                 {t("whatsapp")}
               </Link>
 
+              {/* Wishlist */}
+
+              <button
+                onClick={() => setWishlistOpen(true)}
+                className="relative flex h-11 w-11 items-center justify-center rounded-full border border-[#E8D7B6] bg-white shadow-sm transition hover:bg-[#F8F1E3]"
+              >
+                <Heart size={20} className="text-[#670047]" />
+
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-[#670047] text-[10px] font-bold text-white">
+                    {wishlistCount}
+                  </span>
+                )}
+              </button>
               {/* Cart */}
 
               <button
@@ -173,6 +196,7 @@ export default function Header() {
                 <Link
                   href="/"
                   className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
+                  prefetch
                 >
                   {t("home")}
                 </Link>
@@ -180,6 +204,7 @@ export default function Header() {
                 <Link
                   href="/products"
                   className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
+                  prefetch
                 >
                   {t("products")}
                 </Link>
@@ -187,6 +212,7 @@ export default function Header() {
                 <Link
                   href="/corporate"
                   className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
+                  prefetch
                 >
                   {t("corporate")}
                 </Link>
@@ -194,6 +220,7 @@ export default function Header() {
                 <Link
                   href="/about"
                   className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
+                  prefetch
                 >
                   {t("about")}
                 </Link>
@@ -201,6 +228,7 @@ export default function Header() {
                 <Link
                   href="/contact"
                   className="rounded-lg px-4 py-3 hover:bg-[#EFE4C8]"
+                  prefetch
                 >
                   {t("contact")}
                 </Link>
@@ -209,6 +237,7 @@ export default function Header() {
                   href="https://wa.me/201000000000"
                   target="_blank"
                   className="mt-4 rounded-lg bg-[#25D366] py-3 text-center font-medium text-white"
+                  prefetch
                 >
                   {t("whatsapp")}
                 </Link>
@@ -218,6 +247,11 @@ export default function Header() {
         </div>
       </header>
       <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+
+      <WishlistDrawer
+        isOpen={wishlistOpen}
+        onClose={() => setWishlistOpen(false)}
+      />
     </>
   );
 }

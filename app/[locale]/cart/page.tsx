@@ -13,10 +13,11 @@ import {
 } from "lucide-react";
 
 import { useCartStore } from "@/store/cartStore";
+import { useRouter } from "next/navigation";
 
 export default function CartPage() {
   const locale = useLocale();
-
+  const router = useRouter();
   const t = useTranslations("cart");
   const misc = useTranslations("misc");
 
@@ -50,6 +51,7 @@ export default function CartPage() {
 
           <Link
             href="/products"
+            prefetch
             className="rounded-full bg-[#670047] px-8 py-4 font-semibold text-white transition hover:bg-[#7A0052]"
           >
             {t("browseCta")}
@@ -83,7 +85,7 @@ export default function CartPage() {
 
               return (
                 <div
-                  key={item.id}
+                  key={`${item.id}-${item.selectedWeight}`}
                   className="flex gap-5 rounded-3xl border border-[rgba(139,90,43,0.10)] bg-white p-5 shadow-sm"
                 >
                   <div className="relative h-28 w-28 flex-shrink-0 overflow-hidden rounded-2xl bg-[#F5EDD6]">
@@ -109,7 +111,9 @@ export default function CartPage() {
                     <div className="mt-4 flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => decreaseQuantity(item.id)}
+                          onClick={() =>
+                            decreaseQuantity(item.id, item.selectedWeight)
+                          }
                           className="flex h-9 w-9 items-center justify-center rounded-full bg-[#EFE4C8] hover:bg-[#DCC8A4]"
                         >
                           <Minus size={16} />
@@ -120,7 +124,9 @@ export default function CartPage() {
                         </span>
 
                         <button
-                          onClick={() => increaseQuantity(item.id)}
+                          onClick={() =>
+                            increaseQuantity(item.id, item.selectedWeight)
+                          }
                           className="flex h-9 w-9 items-center justify-center rounded-full bg-[#670047] text-white hover:bg-[#7A0052]"
                         >
                           <Plus size={16} />
@@ -140,7 +146,7 @@ export default function CartPage() {
                   </div>
 
                   <button
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={() => removeFromCart(item.id, item.selectedWeight)}
                     className="self-start rounded-full p-2 text-[#7A5C3A] hover:bg-red-50 hover:text-red-600"
                   >
                     <Trash2 size={18} />
@@ -196,7 +202,10 @@ export default function CartPage() {
               </div>
             </div>
 
-            <button className="mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-[#670047] py-4 font-semibold text-white hover:bg-[#7A0052]">
+            <button
+              onClick={() => router.push(`/${locale}/checkout`)}
+              className="mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-[#670047] py-4 font-semibold text-white transition hover:bg-[#7A0052]"
+            >
               {t("checkout")}
               <ArrowIcon size={18} />
             </button>

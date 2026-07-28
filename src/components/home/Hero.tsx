@@ -95,6 +95,7 @@ export default function Hero() {
             <Link
               href="/products"
               className="flex items-center justify-center gap-2 rounded-full bg-[#670047] px-6 py-3 lg:px-8 lg:py-4 font-semibold text-white hover:bg-[#540039]"
+              prefetch
             >
               {t("ctaShop")}
               <ArrowIcon size={18} />
@@ -103,6 +104,7 @@ export default function Hero() {
             <Link
               href="/corporate"
               className="flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 lg:px-8 lg:py-4 font-semibold text-white backdrop-blur-sm hover:bg-white/20"
+              prefetch
             >
               <Building2 size={18} />
               {t("ctaCorporate")}

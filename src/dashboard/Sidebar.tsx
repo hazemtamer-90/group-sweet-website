@@ -169,6 +169,19 @@ export default function Sidebar({ collapsed, dark }: SidebarProps) {
               <div
                 className="flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200"
                 style={{
+                  display: [
+                    "inventory",
+                    "customers",
+                    "b2b",
+                    "sales-team",
+                    "coupons",
+                    "offers",
+                    "reviews",
+                    "analytics",
+                  ].includes(id)
+                    ? "none"
+                    : "flex",
+
                   background:
                     pathname === fullPath ? P.primaryLt : "transparent",
                   color: pathname === fullPath ? P.primary : muted,

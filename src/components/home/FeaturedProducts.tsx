@@ -32,6 +32,7 @@ export default function FeaturedProducts() {
           <Link
             href="/products"
             className="hidden md:flex items-center gap-2 text-[#670047] font-semibold hover:gap-3 transition-all"
+            prefetch
           >
             {t("viewAll")} ←
           </Link>
@@ -51,6 +52,7 @@ export default function FeaturedProducts() {
           <Link
             href="/products"
             className="md:hidden bg-[#670047] hover:bg-[#7A0052] text-white px-8 py-3 rounded-full font-semibold transition"
+            prefetch
           >
             {t("viewAllMobile")}
           </Link>
