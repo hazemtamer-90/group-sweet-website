@@ -29,6 +29,9 @@ export interface Product {
   weight: string[];
   weightEn: string[];
 
+  contents?: string[];
+
+  showWeightSelector?: boolean;
 }
 import { coconutProducts } from "./products/coconut";
 import { malbanProducts } from "./products/malban";

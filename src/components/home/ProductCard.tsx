@@ -140,7 +140,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {displayCategory}
           </div>
 
-          <h3 className="min-h-[40px] line-clamp-2 break-words text-[15px] font-bold leading-5 text-[#2C1A0E]">
+          <h3 className="min-h-[40px] line-clamp-2 break-words text-[13px] font-bold leading-5 text-[#2C1A0E]">
             {displayName}
           </h3>
 
@@ -175,8 +175,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                 locale === "ar" ? "items-end" : "items-start"
               }`}
             >
-              <span className="text-[17px] font-bold text-[#670047]">
-                {product.price} {misc("egp")}
+              <span className="font-bold text-[#670047]">
+                <span className="text-[15px]">{product.price}</span>
+                <span className="ml-1 text-[11px] font-semibold">
+                  {misc("egp")}
+                </span>
               </span>
 
               {product.originalPrice && (
@@ -189,15 +192,15 @@ export default function ProductCard({ product }: ProductCardProps) {
             {/* Add To Cart */}
             <button
               onClick={handleAddToCart}
-              className={`flex h-8 w-[82px] shrink-0 items-center justify-center gap-1 rounded-full text-[10px] font-semibold transition-all duration-300 ${
+              className={`flex h-7 w-[72px] shrink-0 items-center justify-center gap-1 rounded-full text-[10px] font-semibold transition-all duration-300 ${
                 added
                   ? "bg-[#4A6741] text-white"
                   : "bg-[#670047] text-white hover:bg-[#7A0052]"
               }`}
             >
-              <ShoppingCart size={12} />
+              <ShoppingCart size={10} />
 
-              <span className="whitespace-nowrap">
+              <span className="whitespace-nowrap text-[9px]">
                 {added ? t("added") : t("addToCart")}
               </span>
             </button>

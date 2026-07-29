@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import ProductHighlights from "./ProductHighlights";
+import ProductContents from "./ProductContents";
 import ProductTabs from "./ProductTabs";
 import { useToastStore } from "@/store/toastStore";
 import { useWishlist } from "@/store/wishlistStore";
@@ -34,10 +35,11 @@ export default function ProductDetails({ product }: Props) {
   const t = useTranslations("productDetails");
   const misc = useTranslations("misc");
 
-  
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
-  const [selectedWeight, setSelectedWeight] = useState("0.25");
+  const [selectedWeight, setSelectedWeight] = useState(
+    product.showWeightSelector === false ? "1" : "0.25",
+  );
 
   const addToCart = useCartStore((state) => state.addToCart);
   const toast = useToastStore();
@@ -261,41 +263,49 @@ export default function ProductDetails({ product }: Props) {
             {displayDescription}
           </p>
 
+          {product.contents && <ProductContents contents={product.contents} />}
+
           {extras && <ProductHighlights highlights={extras.highlights} />}
           {/* Weight */}
 
-          <div className="mt-8">
-            <h3 className="mb-4 font-semibold text-[#2C1A0E]">{t("weight")}</h3>
+          {/* Weight */}
 
-            <div className="flex gap-3">
-              {[
-                {
-                  value: "0.25",
-                  label: locale === "en" ? "250g" : "ربع كيلو",
-                },
-                {
-                  value: "0.5",
-                  label: locale === "en" ? "500g" : "نصف كيلو",
-                },
-                {
-                  value: "1",
-                  label: locale === "en" ? "1kg" : "كيلو",
-                },
-              ].map((item) => (
-                <button
-                  key={item.value}
-                  onClick={() => setSelectedWeight(item.value)}
-                  className={`rounded-xl border px-6 py-3 transition ${
-                    selectedWeight === item.value
-                      ? "border-[#670047] bg-[#670047] text-white"
-                      : "border-[#E8D7B6]"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
+          {product.showWeightSelector !== false && (
+            <div className="mt-8">
+              <h3 className="mb-4 font-semibold text-[#2C1A0E]">
+                {t("weight")}
+              </h3>
+
+              <div className="flex gap-3">
+                {[
+                  {
+                    value: "0.25",
+                    label: locale === "en" ? "250g" : "ربع كيلو",
+                  },
+                  {
+                    value: "0.5",
+                    label: locale === "en" ? "500g" : "نصف كيلو",
+                  },
+                  {
+                    value: "1",
+                    label: locale === "en" ? "1kg" : "كيلو",
+                  },
+                ].map((item) => (
+                  <button
+                    key={item.value}
+                    onClick={() => setSelectedWeight(item.value)}
+                    className={`rounded-xl border px-6 py-3 transition ${
+                      selectedWeight === item.value
+                        ? "border-[#670047] bg-[#670047] text-white"
+                        : "border-[#E8D7B6]"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Quantity */}
 
