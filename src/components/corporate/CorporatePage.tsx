@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import ContactHeroBackground from "@/components/contact/ContactHeroBackground";
 
 import {
   Building2,
@@ -71,10 +72,8 @@ export default function CorporatePage() {
   return (
     <main className="min-h-screen bg-[#FAF5E9]">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-[#2C1A0E] py-28">
-        <div className="absolute inset-0 opacity-10 pattern-bg" />
-
-        <div className="absolute left-0 top-0 h-96 w-96 rounded-full bg-[#C9942A]/10 blur-3xl" />
+      <section className="relative overflow-hidden bg-[#2C1A0E] py-20">
+        <ContactHeroBackground />
 
         <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#C9942A]/30 bg-[#C9942A]/10 px-5 py-2 text-[#C9942A]">
@@ -328,7 +327,6 @@ export default function CorporatePage() {
               </div>
             </div>
             <div className="grid gap-5 md:grid-cols-2">
-              
               <div>
                 <label className="mb-2 block font-semibold text-[#2C1A0E]">
                   {locale === "ar" ? "رقم الهاتف *" : "Phone Number *"}

@@ -475,5 +475,22 @@
     "continueShopping": "Continue Shopping",
     "addToCart": "Add to Cart",
     "viewWishlist": "View Wishlist"
+  },
+  "notFound": {
+    "badge": "Group Sweet",
+    "title": "Looks like the sweet you're looking for has disappeared",
+    "description": "The page you're trying to reach doesn't exist or may have been moved.",
+    "description2": "Don't worry, we have plenty of delicious sweets waiting for you.",
+    "home": "Back to Home",
+    "products": "Browse Products",
+    "back": "Go Back",
+    "searchTitle": "Looking for a product?",
+    "searchPlaceholder": "Search products...",
+    "popularTitle": "Best Sellers",
+    "quickLinks": "Quick Links",
+    "homeLink": "Home",
+    "productsLink": "Products",
+    "giftsLink": "Gift Boxes",
+    "contactLink": "Contact Us"
   }
 }

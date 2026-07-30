@@ -481,5 +481,23 @@
     "continueShopping": "متابعة التسوق",
     "addToCart": "أضف إلى السلة",
     "viewWishlist": "عرض المفضلة"
+  },
+  "notFound": {
+    "badge": "Group Sweet",
+    "title": "يبدو أن الحلوى التي تبحث عنها اختفت",
+    "description": "الصفحة التي تحاول الوصول إليها غير موجودة أو ربما تم نقلها.",
+    "description2": "لا تقلق، لدينا الكثير من الحلويات اللذيذة لتكتشفها.",
+    "home": "العودة للرئيسية",
+    "products": "تصفح المنتجات",
+    "back": "رجوع",
+    "searchTitle": "تبحث عن منتج معين؟",
+    "searchPlaceholder": "ابحث عن منتجات...",
+    "popularTitle": "الأكثر مبيعاً",
+    "quickLinks": "روابط سريعة",
+    "homeLink": "الرئيسية",
+    "productsLink": "المنتجات",
+    "giftsLink": "علب الهدايا",
+    "contactLink": "تواصل معنا"
+    
   }
 }

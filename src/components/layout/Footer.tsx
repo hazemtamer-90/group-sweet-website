@@ -51,8 +51,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#1A0F07] text-[#D4B896]">
-      <div className="mx-auto max-w-7xl px-5 py-14">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-5 py-10">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
 
           <div>
@@ -61,10 +61,10 @@ export default function Footer() {
               alt="Group Sweet"
               width={170}
               height={70}
-              className="mb-5 h-auto w-auto"
+              className="mb-4 h-auto w-auto"
             />
 
-            <p className="mb-6 max-w-xs text-sm leading-7 text-[#D4B896]/80">
+            <p className="mb-5 max-w-xs text-sm leading-6 text-[#D4B896]/80">
               {t("description")}
             </p>
             <div className="flex gap-3">
@@ -92,11 +92,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-5 text-lg font-semibold text-white">
+            <h3 className="mb-4 text-lg font-semibold text-white">
               {t("quickLinksHeading")}
             </h3>
 
-            <div className="space-y-3">
+            <div className="space-y-2">
               {quickLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -156,7 +156,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4">
+            <div className="mt-5 rounded-2xl border border-white/10 bg-white/5 p-3">
               <h4 className="mb-2 text-sm text-white">
                 {t("workingHoursLabel")}
               </h4>
@@ -172,7 +172,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 py-6 md:flex-row">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-4 md:flex-row">
           <div className="flex items-center gap-3">
             <span className="text-xs">{t("paymentLabel")}</span>
 

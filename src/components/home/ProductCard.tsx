@@ -3,7 +3,7 @@
 import { Link } from "@/i18n/navigation";
 import { useState } from "react";
 import Image from "next/image";
-import { ShoppingCart, Star, Heart } from "lucide-react";
+import { ShoppingCart, Heart } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 
 import { useCartStore } from "@/store/cartStore";
@@ -140,27 +140,9 @@ export default function ProductCard({ product }: ProductCardProps) {
             {displayCategory}
           </div>
 
-          <h3 className="min-h-[40px] line-clamp-2 break-words text-[13px] font-bold leading-5 text-[#2C1A0E]">
+          <h3 className="min-h-[48px] line-clamp-2 break-words text-[14px] font-bold leading-6 text-[#2C1A0E]">
             {displayName}
           </h3>
-
-          <div className="mb-2 flex items-center gap-1.5">
-            <div className="flex items-center gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  size={11}
-                  className={
-                    i < Math.floor(product.rating)
-                      ? "fill-[#C9942A] text-[#C9942A]"
-                      : "text-[#D4B896]"
-                  }
-                />
-              ))}
-            </div>
-
-            <span className="text-xs text-[#7A5C3A]">({product.reviews})</span>
-          </div>
 
           <div
             className={`mt-auto flex items-end ${

@@ -4,6 +4,9 @@ import { Mail } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ContactHeroBackground from "@/components/contact/ContactHeroBackground";
+import ContactInfoCards from "@/components/contact/ContactInfoCards";
+import GoogleMap from "@/components/contact/GoogleMap";
 
 export default function ContactPage() {
   const locale = useLocale();
@@ -15,9 +18,8 @@ export default function ContactPage() {
 
       <main className="min-h-screen bg-[#FAF5E9]">
         {/* Hero */}
-        <section className="relative overflow-hidden bg-[#2C1A0E] py-24">
-          <div className="absolute inset-0 opacity-10 pattern-bg" />
-          <div className="absolute left-0 top-0 h-96 w-96 rounded-full bg-[#C9942A]/10 blur-3xl" />
+        <section className="relative overflow-hidden bg-[#2C1A0E] py-20">
+          <ContactHeroBackground />
 
           <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#C9942A]/30 bg-[#C9942A]/10 px-5 py-2 text-[#C9942A]">
@@ -117,7 +119,7 @@ export default function ContactPage() {
                 />
               </div>
 
-              <button
+                          <button
                 type="submit"
                 className="flex w-full items-center justify-center gap-3 rounded-2xl bg-[#670047] py-4 text-lg font-semibold text-white transition hover:bg-[#7D0056]"
               >
@@ -127,6 +129,10 @@ export default function ContactPage() {
             </form>
           </div>
         </section>
+
+        <ContactInfoCards />
+
+        <GoogleMap />
       </main>
 
       <Footer />
