@@ -276,33 +276,51 @@ export default function ProductDetails({ product }: Props) {
                 {t("weight")}
               </h3>
 
-              <div className="flex gap-3">
-                {[
-                  {
-                    value: "0.25",
-                    label: locale === "en" ? "250g" : "ربع كيلو",
-                  },
-                  {
-                    value: "0.5",
-                    label: locale === "en" ? "500g" : "نصف كيلو",
-                  },
-                  {
-                    value: "1",
-                    label: locale === "en" ? "1kg" : "كيلو",
-                  },
-                ].map((item) => (
-                  <button
-                    key={item.value}
-                    onClick={() => setSelectedWeight(item.value)}
-                    className={`rounded-xl border px-6 py-3 transition ${
-                      selectedWeight === item.value
-                        ? "border-[#670047] bg-[#670047] text-white"
-                        : "border-[#E8D7B6]"
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
+              <div className="mt-4">
+                <div className="grid grid-cols-3 overflow-hidden rounded-2xl border border-[#E8D7B6] bg-white shadow-sm">
+                  {[
+                    {
+                      value: "0.25",
+                      label: locale === "en" ? "250g" : "ربع كيلو",
+                    },
+                    {
+                      value: "0.5",
+                      label: locale === "en" ? "500g" : "نصف كيلو",
+                    },
+                    {
+                      value: "1",
+                      label: locale === "en" ? "1kg" : "كيلو",
+                    },
+                  ].map((item) => (
+                    <label key={item.value} className="cursor-pointer">
+                      <input
+                        type="radio"
+                        name="weight"
+                        value={item.value}
+                        checked={selectedWeight === item.value}
+                        onChange={() => setSelectedWeight(item.value)}
+                        className="peer sr-only"
+                      />
+
+                      <span
+                        className="
+            flex h-14 items-center justify-center
+            border-l border-[#E8D7B6]
+            text-base font-semibold
+            text-[#2C1A0E]
+            transition-all duration-300
+            peer-checked:bg-[#670047]
+            peer-checked:text-white
+            peer-checked:shadow-inner
+            hover:bg-[#F8F1E6]
+            peer-checked:hover:bg-[#670047]
+          "
+                      >
+                        {item.label}
+                      </span>
+                    </label>
+                  ))}
+                </div>
               </div>
             </div>
           )}
