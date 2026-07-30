@@ -7,7 +7,7 @@ import { routing } from "@/i18n/routing";
 import AdminButton from "@/components/AdminButton";
 import WishlistHydration from "@/components/providers/WishlistHydration";
 import Toast from "@/components/ui/Toast";
-
+import SplashProvider from "@/components/providers/SplashProvider";
 export default async function LocaleLayout({
   children,
   params,
@@ -25,19 +25,21 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <WishlistHydration />
+      <SplashProvider>
+        <WishlistHydration />
 
-      <div
-        lang={locale}
-        dir={locale === "ar" ? "rtl" : "ltr"}
-        className="min-h-screen"
-      >
-        {children}
+        <div
+          lang={locale}
+          dir={locale === "ar" ? "rtl" : "ltr"}
+          className="min-h-screen"
+        >
+          {children}
 
-        <Toast />
+          <Toast />
 
-        <AdminButton />
-      </div>
+          <AdminButton />
+        </div>
+      </SplashProvider>
     </NextIntlClientProvider>
   );
 }

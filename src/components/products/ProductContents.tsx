@@ -26,13 +26,6 @@ export default function ProductContents({ contents }: ProductContentsProps) {
     return result;
   }, [expanded, contents]);
 
-  const columnWidth =
-    columns.length >= 3
-      ? "min-w-[100px] sm:min-w-[110px] lg:min-w-[150px]"
-      : columns.length === 2
-        ? "min-w-[125px] sm:min-w-[145px] lg:min-w-[170px]"
-        : "w-full";
-
   return (
     <section className="mt-6 overflow-hidden rounded-[22px] border border-[#EEE7DD] bg-white shadow-sm">
       {/* Header */}
@@ -57,13 +50,20 @@ export default function ProductContents({ contents }: ProductContentsProps) {
 
       {/* Contents */}
 
-      <div className="overflow-x-auto px-4 py-3">
-        <div className="flex gap-3 sm:gap-4 lg:gap-6 min-w-max">
+      <div className="px-4 py-3">
+        <div
+          className={`grid gap-2 ${
+            expanded
+              ? columns.length >= 3
+                ? "grid-cols-3"
+                : columns.length === 2
+                  ? "grid-cols-2"
+                  : "grid-cols-1"
+              : "grid-cols-1"
+          }`}
+        >
           {columns.map((column, columnIndex) => (
-            <div
-              key={columnIndex}
-              className={`${columnWidth} shrink-0 space-y-1`}
-            >
+            <div key={columnIndex} className="min-w-0 space-y-1">
               {column.map((item, itemIndex) => {
                 const number = columnIndex * 10 + itemIndex + 1;
 
@@ -110,14 +110,14 @@ export default function ProductContents({ contents }: ProductContentsProps) {
 
                     <span
                       className="
-                        truncate
-                        text-[11px]
-                        sm:text-[12px]
-                        lg:text-[13px]
-                        font-medium
-                        leading-6
-                        text-[#3A2A22]
-                      "
+    break-words
+    text-[10px]
+    sm:text-[11px]
+    lg:text-[13px]
+    font-medium
+    leading-5
+    text-[#3A2A22]
+  "
                     >
                       {item}
                     </span>
