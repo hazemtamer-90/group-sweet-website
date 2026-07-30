@@ -12,8 +12,9 @@ export default function SplashProvider({
 
   return (
     <>
-      <SplashScreen show={showSplash} />
       {children}
+
+      <SplashScreen show={showSplash} />
     </>
   );
 }
