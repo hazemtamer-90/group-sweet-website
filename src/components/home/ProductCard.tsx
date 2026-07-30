@@ -192,15 +192,15 @@ export default function ProductCard({ product }: ProductCardProps) {
             {/* Add To Cart */}
             <button
               onClick={handleAddToCart}
-              className={`flex h-7 w-[72px] shrink-0 items-center justify-center gap-1 rounded-full text-[10px] font-semibold transition-all duration-300 ${
+              className={`flex h-8 min-w-[58px] px-3 shrink-0 items-center justify-center gap-1 rounded-full text-[11px] font-semibold transition-all duration-300 ${
                 added
                   ? "bg-[#4A6741] text-white"
                   : "bg-[#670047] text-white hover:bg-[#7A0052]"
               }`}
             >
-              <ShoppingCart size={10} />
+              <ShoppingCart size={13} />
 
-              <span className="whitespace-nowrap text-[9px]">
+              <span className="whitespace-nowrap">
                 {added ? t("added") : t("addToCart")}
               </span>
             </button>

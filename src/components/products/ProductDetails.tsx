@@ -24,6 +24,7 @@ import {
 import { products, type Product } from "@/data/products";
 import { productExtras } from "@/data/productExtras";
 import { useCartStore } from "@/store/cartStore";
+import ProductCard from "@/components/home/ProductCard";
 
 interface Props {
   product: Product;
@@ -435,60 +436,9 @@ export default function ProductDetails({ product }: Props) {
           {t("relatedProducts")}
         </h2>
 
-        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+        <div className="grid gap-6 grid-cols-2 lg:grid-cols-4">
           {relatedProducts.map((item) => (
-            <div
-              key={item.id}
-              className="overflow-hidden rounded-2xl border border-[#E8D7B6] bg-white transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <Link href={`/${locale}/products/${item.slug}`} prefetch>
-                <div className="relative h-56 bg-[#F5EDD6]">
-                  <Image
-                    src={item.image}
-                    alt={locale === "en" ? item.nameEn : item.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </Link>
-
-              <div className="p-4">
-                <div className="text-xs text-[#C9942A]">
-                  {locale === "en" ? item.categoryEn : item.category}
-                </div>
-
-                <Link href={`/${locale}/products/${item.slug}`} prefetch>
-                  <h3 className="mt-2 line-clamp-2 text-lg font-bold text-[#2C1A0E] hover:text-[#670047]">
-                    {locale === "en" ? item.nameEn : item.name}
-                  </h3>
-                </Link>
-
-                <div className="mt-4 flex items-center gap-2">
-                  <span className="text-xl font-bold text-[#670047]">
-                    {item.price}
-                  </span>
-
-                  <span className="text-sm text-[#7A5C3A]">{misc("egp")}</span>
-                </div>
-
-                <button
-                  onClick={() =>
-                    addToCart(
-                      {
-                        ...item,
-                        price: item.price,
-                      },
-                      1,
-                      "1",
-                    )
-                  }
-                  className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-[#670047] py-3 text-sm font-semibold text-white hover:bg-[#7D0056]"
-                >
-                  <ShoppingCart size={15} />
-                  {t("addToCart")}
-                </button>
-              </div>
-            </div>
+            <ProductCard key={item.id} product={item} />
           ))}
         </div>
       </div>
