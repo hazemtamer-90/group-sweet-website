@@ -12,71 +12,64 @@ type QuickLink = {
   href: string;
 };
 
-type Category = {
-  name: string;
-  href: string;
-};
-
 export default function Footer() {
   const t = useTranslations("footer");
 
   const quickLinks = t.raw("quickLinks") as QuickLink[];
-
-  const categories = t.raw("categories") as Category[];
-
+  const whyChoose = t.raw("whyChoose") as string[];
   const workingHours = t.raw("workingHours") as string[];
-
   const paymentMethods = t.raw("paymentMethods") as string[];
 
   return (
     <footer className="bg-[#1A0F07] text-[#D4B896]">
-      <div className="mx-auto max-w-7xl px-4 py-3 md:px-5 md:py-6">
-        <div className="grid gap-3 lg:gap-5 lg:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-4 py-4 md:px-5 md:py-6">
+        <div className="grid gap-5 lg:grid-cols-4">
           {/* Brand */}
           <div>
             <Image
               src="/images/logo/logo.png"
               alt="Group Sweet"
-              width={110}
-              height={45}
-              className="mb-3 h-auto w-auto"
+              width={120}
+              height={50}
+              className="mb-4 h-auto w-auto"
             />
 
-            <p className="mb-3 max-w-xs text-[13px] leading-5 text-[#D4B896]/80">
+            <p className="mb-5 max-w-xs text-[13px] leading-6 text-[#D4B896]/80">
               {t("description")}
             </p>
 
             <div className="flex gap-3">
               <a
                 href="#"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#C9942A]"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#C9942A]"
               >
                 <FaFacebookF size={14} />
               </a>
 
               <a
                 href="#"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#C9942A]"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#C9942A]"
               >
-                <FaInstagram size={13} />
+                <FaInstagram size={14} />
               </a>
 
               <a
                 href="#"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#C9942A]"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#C9942A]"
               >
-                <FaXTwitter size={13} />
+                <FaXTwitter size={14} />
               </a>
             </div>
-          </div>{" "}
-          {/* Mobile: Quick Links + Categories */}
+          </div>
+          {/* Mobile */}
           <div className="grid grid-cols-2 gap-8 lg:hidden">
+            {/* Quick Links */}
             <div>
-              <h3 className="mb-2 text-base font-semibold text-white">
+              <h3 className="mb-3 text-base font-semibold text-white">
                 {t("quickLinksHeading")}
               </h3>
 
-              <div className="space-y-1.5">
+              <div className="space-y-2">
                 {quickLinks.map((link) => (
                   <Link
                     key={link.href}
@@ -90,21 +83,21 @@ export default function Footer() {
               </div>
             </div>
 
+            {/* Why Choose */}
             <div>
-              <h3 className="mb-2 text-base font-semibold text-white">
-                {t("categoriesHeading")}
+              <h3 className="mb-3 text-base font-semibold text-white">
+                {t("whyChooseHeading")}
               </h3>
 
-              <div className="space-y-1.5">
-                {categories.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block text-[13px] transition hover:text-[#C9942A]"
-                    prefetch
+              <div className="space-y-2">
+                {whyChoose.map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-start gap-2 text-[13px] leading-5"
                   >
-                    {item.name}
-                  </Link>
+                    <span className="mt-1 text-[#C9942A]">✓</span>
+                    <span>{item}</span>
+                  </div>
                 ))}
               </div>
             </div>
@@ -128,56 +121,80 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          {/* Desktop Categories */}
+          {/* Desktop Why Choose */}
           <div className="hidden lg:block">
             <h3 className="mb-3 text-lg font-semibold text-white">
-              {t("categoriesHeading")}
+              {t("whyChooseHeading")}
             </h3>
 
-            <div className="space-y-2">
-              {categories.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block text-sm transition hover:text-[#C9942A]"
-                  prefetch
+            <div className="space-y-3">
+              {whyChoose.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-start gap-2 text-sm leading-6"
                 >
-                  {item.name}
-                </Link>
+                  <span className="mt-1 text-[#C9942A]">✓</span>
+                  <span>{item}</span>
+                </div>
               ))}
             </div>
-          </div>{" "}
+          </div>
           {/* Contact */}
           <div>
             <h3 className="mb-3 text-lg font-semibold text-white">
               {t("contactHeading")}
             </h3>
 
-            <div className="space-y-2">
+            <div className="space-y-3">
               <a
-                href="tel:+201000000000"
-                className="flex items-center gap-3 text-sm hover:text-[#C9942A]"
+                href={`tel:${t("phone")}`}
+                className="flex items-start gap-3 text-sm transition hover:text-[#C9942A]"
               >
-                <Phone size={16} />
+                <Phone size={16} className="mt-1 flex-shrink-0" />
                 <span>{t("phone")}</span>
               </a>
 
               <a
                 href={`mailto:${t("email")}`}
-                className="flex items-center gap-3 text-sm hover:text-[#C9942A]"
+                className="flex items-start gap-3 text-sm transition hover:text-[#C9942A]"
               >
-                <Mail size={16} />
+                <Mail size={16} className="mt-1 flex-shrink-0" />
                 <span>{t("email")}</span>
               </a>
 
               <div className="flex items-start gap-3 text-sm">
-                <MapPin size={16} className="mt-1" />
-                <span>{t("address")}</span>
+                <MapPin size={16} className="mt-1 flex-shrink-0" />
+
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="mb-1 font-semibold text-white">
+                      {t("branchesHeading")}
+                    </h4>
+
+                    <p className="leading-6 text-[#D4B896]/80">
+                      {t("branch1")}
+                    </p>
+
+                    <p className="leading-6 text-[#D4B896]/80">
+                      {t("branch2")}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="mb-1 font-semibold text-white">
+                      {t("factoryHeading")}
+                    </h4>
+
+                    <p className="leading-6 text-[#D4B896]/80">
+                      {t("factoryAddress")}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-3">
-              <h4 className="mb-2 text-sm text-white">
+            <div className="mt-5 rounded-xl border border-white/10 bg-white/5 p-4">
+              <h4 className="mb-2 text-sm font-medium text-white">
                 {t("workingHoursLabel")}
               </h4>
 
@@ -187,12 +204,11 @@ export default function Footer() {
                 </p>
               ))}
             </div>
-          </div>
+          </div>{" "}
         </div>
       </div>
-
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-4 md:flex-row">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-4 md:flex-row md:px-5">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs">{t("paymentLabel")}</span>
 
@@ -210,7 +226,7 @@ export default function Footer() {
             {t("copyright")}
           </p>
         </div>
-      </div>
+      </div>{" "}
     </footer>
   );
 }

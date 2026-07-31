@@ -297,7 +297,24 @@
     "contactHeading": "Contact",
     "phone": "+20 100 000 0000",
     "email": "info@groupsweet.com",
-    "address": "Cairo, Egypt",
+    "whyChooseHeading": "Why Choose Group Sweet?",
+
+    "whyChoose": [
+      "Over 15 Years of Experience",
+      "Premium Natural Ingredients",
+      "Fresh Daily Production",
+      "Special Prices for Wholesale & Corporate Orders"
+    ],
+
+    "branchesHeading": "Our Branches",
+
+    "branch1": "Bulaq El Gedid - Abu El Ola: 62 Sheikh Fara St.",
+
+    "branch2": "Shubra Misr: 42 Masra Street",
+
+    "factoryHeading": "Factory Address",
+
+    "factoryAddress": "El Obour City - Western Extension - First Industrial Zone - Street 900 - Plot No. 9",
     "workingHoursLabel": "Working Hours",
     "workingHours": ["Saturday - Thursday", "9:00 AM - 9:00 PM"],
     "paymentLabel": "Payment Methods",
