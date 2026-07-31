@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import ContactHeroBackground from "@/components/contact/ContactHeroBackground";
+import PageHero from "@/components/common/PageHero";
 
 import {
   Building2,
@@ -71,30 +72,7 @@ export default function CorporatePage() {
 
   return (
     <main className="min-h-screen bg-[#FAF5E9]">
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-[#2C1A0E] py-20">
-        <ContactHeroBackground />
-
-        <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#C9942A]/30 bg-[#C9942A]/10 px-5 py-2 text-[#C9942A]">
-            <Building2 size={18} />
-
-            <span>
-              {locale === "ar"
-                ? "للشركات والمؤسسات"
-                : "For Companies & Organizations"}
-            </span>
-          </div>
-
-          <h1 className="text-5xl font-bold leading-tight text-white">
-            {t("heading")}
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#D4B896]">
-            {t("subtext")}
-          </p>
-        </div>
-      </section>
+      <PageHero title={t("heading")} subtitle={t("subtext")} />
       {/* Features */}
       <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">

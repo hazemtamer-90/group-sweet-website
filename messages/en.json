@@ -156,7 +156,7 @@
 
     "experienceBadge": {
       "value": "15+",
-      "label": "Years of Experience"
+      "label": "Experience"
     }
   },
   "whyUs": {
@@ -265,13 +265,34 @@
     ],
     "categoriesHeading": "Categories",
     "categories": [
-      "Coconut",
-      "Malban",
-      "Nougat",
-      "Dry Sweets",
-      "Round Sweets",
-      "Boxes",
-      "Cream"
+      {
+        "name": "Coconut",
+        "href": "/products?category=coconut"
+      },
+      {
+        "name": "Malban",
+        "href": "/products?category=malban"
+      },
+      {
+        "name": "Nougat",
+        "href": "/products?category=nougat"
+      },
+      {
+        "name": "Dry Sweets",
+        "href": "/products?category=dry"
+      },
+      {
+        "name": "Round Sweets",
+        "href": "/products?category=round"
+      },
+      {
+        "name": "Gift Boxes",
+        "href": "/products?category=boxes"
+      },
+      {
+        "name": "Cream",
+        "href": "/products?category=cream"
+      }
     ],
     "contactHeading": "Contact",
     "phone": "+20 100 000 0000",

@@ -8,6 +8,7 @@ import ProductCard from "@/components/home/ProductCard";
 import { products } from "@/data/products";
 import { Grid2X2, List } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
+import PageHero from "@/components/common/PageHero";
 
 export default function ProductsPage() {
   const searchParams = useSearchParams();
@@ -142,13 +143,7 @@ export default function ProductsPage() {
 
       <main className="min-h-screen bg-[#FAF5E9]">
         {/* Hero */}
-        <section className="bg-[#2C1A0E] py-16">
-          <div className="mx-auto max-w-7xl px-5 text-center">
-            <h1 className="text-5xl font-bold text-white">{t("heroTitle")}</h1>
-
-            <p className="mt-4 text-lg text-[#E8C472]">{t("heroSubtitle")}</p>
-          </div>
-        </section>
+        <PageHero title={t("heroTitle")} subtitle={t("heroSubtitle")} />
 
         <section className="mx-auto max-w-7xl px-5 py-10">
           {/* Toolbar */}
@@ -269,12 +264,12 @@ export default function ProductsPage() {
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
-          <div className="mt-12 flex justify-center gap-3">
+          <div className="mt-8 flex justify-start gap-1.5 overflow-x-auto pb-2 px-2 md:justify-center">
             {Array.from({ length: totalPages }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentPage(index + 1)}
-                className={`h-11 w-11 rounded-xl transition ${
+                className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-xs font-medium transition md:h-11 md:w-11 md:text-sm ${
                   currentPage === index + 1
                     ? "bg-[#670047] text-white"
                     : "border border-[#E8D7B6] bg-white text-[#2C1A0E] hover:border-[#670047]"

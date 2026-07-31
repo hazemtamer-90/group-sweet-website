@@ -135,12 +135,10 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         {/* Content */}
 
-        <div className="flex h-[150px] flex-col p-2.5">
-          <div className="mb-0.5 text-[11px] text-[#C9942A]">
-            {displayCategory}
-          </div>
+        <div className="flex h-[150px] flex-col px-3 pt-2 pb-3">
+          <div className="text-[11px] text-[#C9942A]">{displayCategory}</div>
 
-          <h3 className="min-h-[48px] line-clamp-2 break-words text-[14px] font-bold leading-6 text-[#2C1A0E]">
+          <h3 className="min-h-[40px] line-clamp-2 break-words text-[14px] font-bold leading-6 text-[#2C1A0E]">
             {displayName}
           </h3>
 

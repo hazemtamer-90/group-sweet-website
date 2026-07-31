@@ -121,7 +121,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                       />
                     </div>
 
-                    <div className="flex flex-1 flex-col justify-between">
+                    <div className="flex flex-1 flex-col">
                       <h3 className="font-semibold text-[#2C1A0E]">
                         {displayName}
                       </h3>
@@ -139,35 +139,37 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                               : "Weight: 1kg"}
                       </p>
 
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() =>
-                            decreaseQuantity(item.id, item.selectedWeight)
-                          }
-                          className="rounded-full bg-[#EFE4C8] p-1"
-                        >
-                          <Minus size={14} />
-                        </button>
+                      <div className="mt-2">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() =>
+                                decreaseQuantity(item.id, item.selectedWeight)
+                              }
+                              className="rounded-full bg-[#EFE4C8] p-1"
+                            >
+                              <Minus size={14} />
+                            </button>
 
-                        <span>{item.quantity}</span>
+                            <span>{item.quantity}</span>
 
-                        <button
-                          onClick={() =>
-                            increaseQuantity(item.id, item.selectedWeight)
-                          }
-                          className="rounded-full bg-[#670047] p-1 text-white"
-                        >
-                          <Plus size={14} />
-                        </button>
-                      </div>
+                            <button
+                              onClick={() =>
+                                increaseQuantity(item.id, item.selectedWeight)
+                              }
+                              className="rounded-full bg-[#670047] p-1 text-white"
+                            >
+                              <Plus size={14} />
+                            </button>
+                          </div>
 
-                      <div>
-                        <div className="text-sm text-[#7A5C3A]">
-                          {item.quantity} × {item.price} {misc("egp")}
+                          <span className="text-xl font-bold text-[#670047]">
+                            {item.price * item.quantity} {misc("egp")}
+                          </span>
                         </div>
 
-                        <div className="font-bold text-[#670047]">
-                          {item.price * item.quantity} {misc("egp")}
+                        <div className="mt-1 text-sm text-[#7A5C3A]">
+                          {item.quantity} × {item.price} {misc("egp")}
                         </div>
                       </div>
                     </div>

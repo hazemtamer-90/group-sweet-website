@@ -7,6 +7,7 @@ import Footer from "@/components/layout/Footer";
 import ContactHeroBackground from "@/components/contact/ContactHeroBackground";
 import ContactInfoCards from "@/components/contact/ContactInfoCards";
 import GoogleMap from "@/components/contact/GoogleMap";
+import PageHero from "@/components/common/PageHero";
 
 export default function ContactPage() {
   const locale = useLocale();
@@ -17,24 +18,7 @@ export default function ContactPage() {
       <Header />
 
       <main className="min-h-screen bg-[#FAF5E9]">
-        {/* Hero */}
-        <section className="relative overflow-hidden bg-[#2C1A0E] py-20">
-          <ContactHeroBackground />
-
-          <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#C9942A]/30 bg-[#C9942A]/10 px-5 py-2 text-[#C9942A]">
-              <Mail size={18} />
-              <span>{t("badge")}</span>
-            </div>
-
-            <h1 className="text-5xl font-bold text-white">{t("heading")}</h1>
-
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#D4B896]">
-              {t("subtext")}
-            </p>
-          </div>
-        </section>
-
+        <PageHero title={t("heading")} subtitle={t("subtext")} />
         {/* Form */}
         <section className="mx-auto max-w-5xl px-6 py-20">
           <div className="rounded-[30px] bg-white p-10 shadow-lg">
@@ -119,7 +103,7 @@ export default function ContactPage() {
                 />
               </div>
 
-                          <button
+              <button
                 type="submit"
                 className="flex w-full items-center justify-center gap-3 rounded-2xl bg-[#670047] py-4 text-lg font-semibold text-white transition hover:bg-[#7D0056]"
               >

@@ -262,13 +262,34 @@
     ],
     "categoriesHeading": "الفئات",
     "categories": [
-      "جوز الهند",
-      "ملبن",
-      "نوجا",
-      "نواشف",
-      "مدورات",
-      "علب",
-      "قشطة"
+      {
+        "name": "جوز الهند",
+        "href": "/products?category=coconut"
+      },
+      {
+        "name": "ملبن",
+        "href": "/products?category=malban"
+      },
+      {
+        "name": "نوجا",
+        "href": "/products?category=nougat"
+      },
+      {
+        "name": "نواشف",
+        "href": "/products?category=dry"
+      },
+      {
+        "name": "مدورات",
+        "href": "/products?category=round"
+      },
+      {
+        "name": "علب",
+        "href": "/products?category=boxes"
+      },
+      {
+        "name": "قشطة",
+        "href": "/products?category=cream"
+      }
     ],
     "contactHeading": "تواصل معنا",
     "phone": "+20 100 000 0000",
@@ -498,6 +519,5 @@
     "productsLink": "المنتجات",
     "giftsLink": "علب الهدايا",
     "contactLink": "تواصل معنا"
-    
   }
 }
