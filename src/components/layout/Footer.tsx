@@ -91,12 +91,8 @@ export default function Footer() {
 
               <div className="space-y-2">
                 {whyChoose.map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-start gap-2 text-[13px] leading-5"
-                  >
-                    <span className="mt-1 text-[#C9942A]">✓</span>
-                    <span>{item}</span>
+                  <div key={item} className="text-[13px] leading-5">
+                    {item}
                   </div>
                 ))}
               </div>
@@ -129,12 +125,8 @@ export default function Footer() {
 
             <div className="space-y-3">
               {whyChoose.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-start gap-2 text-sm leading-6"
-                >
-                  <span className="mt-1 text-[#C9942A]">✓</span>
-                  <span>{item}</span>
+                <div key={item} className="text-sm leading-6">
+                  {item}
                 </div>
               ))}
             </div>
