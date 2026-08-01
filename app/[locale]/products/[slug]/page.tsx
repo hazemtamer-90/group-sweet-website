@@ -1,66 +1,89 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import ProductSchema from "@/components/seo/ProductSchema";
+
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductDetails from "@/components/products/ProductDetails";
+import ProductSchema from "@/components/seo/ProductSchema";
 
 import { products } from "@/data/products";
 
 interface Props {
   params: Promise<{
+    locale: string;
     slug: string;
   }>;
 }
-import type { Metadata } from "next";
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
 
-  const product = products.find((p) => p.slug === slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug, locale } = await params;
+
+  const product = products.find((item) => item.slug === slug);
 
   if (!product) {
     return {};
   }
 
-  return {
-    title: `${product.name} | Group Sweet`,
+  const isEnglish = locale === "en";
 
-    description: product.description,
+  const name = isEnglish ? product.nameEn : product.name;
+
+  const description = isEnglish ? product.descriptionEn : product.description;
+
+  return {
+    title: `${name} | Group Sweet`,
+    description,
 
     openGraph: {
-      title: product.name,
-      description: product.description,
-      images: [product.image],
+      title: `${name} | Group Sweet`,
+      description,
+      images: [
+        {
+          url: product.image,
+          alt: name,
+        },
+      ],
+      type: "website",
     },
 
     twitter: {
       card: "summary_large_image",
-      title: product.name,
-      description: product.description,
+      title: `${name} | Group Sweet`,
+      description,
       images: [product.image],
     },
   };
 }
-export default async function ProductDetailsPage({ params }: Props) {
-  const { slug } = await params;
 
-  const product = products.find((p) => p.slug === slug);
+export default async function ProductDetailsPage({ params }: Props) {
+  const { slug, locale } = await params;
+
+  const product = products.find((item) => item.slug === slug);
 
   if (!product) {
     notFound();
   }
 
+  const isEnglish = locale === "en";
+
+  const schemaName = isEnglish ? product.nameEn : product.name;
+
+  const schemaDescription = isEnglish
+    ? product.descriptionEn
+    : product.description;
+
   return (
     <>
       <ProductSchema
-        name={product.name}
-        description={product.description}
+        name={schemaName}
+        description={schemaDescription}
         image={product.image}
         price={product.price}
       />
 
       <Header />
 
-      <main className="min-h-screen bg-[#FAF5E9]">
+      <main className="min-h-screen overflow-hidden bg-[#FAF5E9]">
         <ProductDetails product={product} />
       </main>
 

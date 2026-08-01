@@ -4,11 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Building2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import {
-  Reveal,
-  StaggerContainer,
-  StaggerItem,
-} from "@/components/animations";
+import Reveal from "@/components/motion/Reveal";
+import Stagger, { StaggerItem } from "@/components/motion/Stagger";
 
 const productImgs = [
   "/images/products/malban.png",
@@ -63,7 +60,6 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-[85vh] items-center overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0">
         <Image
           src="/images/hero/factory.png"
@@ -74,6 +70,7 @@ export default function Hero() {
         />
 
         <div className="absolute inset-0 bg-[#2C1A0E]/55" />
+
         <div className="absolute inset-0 bg-gradient-to-t from-[#2C1A0E]/90 via-[#2C1A0E]/50 to-[#2C1A0E]/30" />
       </div>
 
@@ -84,14 +81,15 @@ export default function Hero() {
       <div className="absolute bottom-24 right-12 h-32 w-32 rounded-full bg-[#670047]/15 blur-3xl" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-24">
-        <div className="max-w-2xl">          <Reveal>
+        <div className="max-w-2xl">
+          <Reveal direction="down" duration={0.6}>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#C9942A]/40 bg-[#C9942A]/20 px-4 py-2 text-sm text-[#E8C472] backdrop-blur-sm">
               <span className="h-2 w-2 rounded-full bg-[#C9942A]" />
               {t("badge")}
             </div>
           </Reveal>
 
-          <Reveal delay={0.15}>
+          <Reveal direction="right" delay={0.1} duration={0.75}>
             <h1
               className={`mt-6 text-3xl font-bold leading-[1.1] text-white md:text-4xl lg:text-5xl ${
                 locale === "ar" ? "max-w-[720px]" : "max-w-[600px]"
@@ -101,13 +99,13 @@ export default function Hero() {
             </h1>
           </Reveal>
 
-          <Reveal delay={0.3}>
+          <Reveal direction="right" delay={0.2} duration={0.75}>
             <p className="mt-6 max-w-[900px] text-base leading-7 text-[#E6D0B4] md:text-lg lg:text-[20px] lg:leading-8">
               {t("subheadline")}
             </p>
           </Reveal>
 
-          <Reveal delay={0.45}>
+          <Reveal direction="up" delay={0.3}>
             <div className="mt-6 flex flex-col gap-4 sm:flex-row">
               <Link
                 href="/products"
@@ -129,7 +127,10 @@ export default function Hero() {
             </div>
           </Reveal>
 
-          <StaggerContainer className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-4 border-t border-white/20 pt-5 md:mt-8 md:gap-x-10 lg:gap-x-12">
+          <Stagger
+            delay={0.12}
+            className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-4 border-t border-white/20 pt-5 md:mt-8 md:gap-x-10 lg:gap-x-12"
+          >
             {stats.map((item) => (
               <StaggerItem key={item.label}>
                 <div className="min-w-[90px] text-center transition-transform duration-300 hover:-translate-y-1">
@@ -137,17 +138,21 @@ export default function Hero() {
                     {item.value}
                   </div>
 
-                  <div className="mt-1 whitespace-nowrap text-[9px] font-medium leading-3 text-white/80 md:text-[10px] lg:text-[11px]">
+                  <div className="mt-1 whitespace-pre-line text-[9px] font-medium leading-3 text-white/80 md:text-[10px] lg:text-[11px]">
                     {item.label}
                   </div>
                 </div>
               </StaggerItem>
             ))}
-          </StaggerContainer>
+          </Stagger>
         </div>
-      </div>      {/* Product thumbnails */}
+      </div>
+
       <div className="absolute bottom-0 left-0 right-0 hidden bg-gradient-to-t from-[#1A0F07] to-transparent pb-10 pt-8 lg:block">
-        <StaggerContainer className="mx-auto flex max-w-7xl items-end gap-3 px-6">
+        <Stagger
+          delay={0.1}
+          className="mx-auto flex max-w-7xl items-end gap-3 px-6"
+        >
           {products.map((product) => (
             <StaggerItem key={product.label}>
               <div className="group relative h-14 w-14 overflow-hidden rounded-xl border-2 border-white/20 transition-all duration-300 hover:-translate-y-2 hover:border-[#C9942A] hover:shadow-[0_10px_30px_rgba(201,148,42,0.35)]">
@@ -166,7 +171,7 @@ export default function Hero() {
               </div>
             </StaggerItem>
           ))}
-        </StaggerContainer>
+        </Stagger>
       </div>
     </section>
   );

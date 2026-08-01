@@ -2,9 +2,19 @@
 
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
-import { Building2, Package, Users, Star, ArrowLeft } from "lucide-react";
+import {
+  Building2,
+  Package,
+  Users,
+  Star,
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
+
+import Reveal from "@/components/motion/Reveal";
+import Stagger, { StaggerItem } from "@/components/motion/Stagger";
 
 const images = [
   "/images/products/semsmya.png",
@@ -17,10 +27,14 @@ const icons = [Package, Users, Building2, Star];
 
 export default function CorporateOrders() {
   const t = useTranslations("corporate");
+  const locale = useLocale();
+
+  const ArrowIcon = locale === "ar" ? ArrowLeft : ArrowRight;
 
   return (
     <section className="relative overflow-hidden bg-[#2C1A0E] py-20 lg:py-24">
-      <div className="absolute inset-0 opacity-5 pattern-bg" />
+      {/* Background */}
+      <div className="pattern-bg absolute inset-0 opacity-5" />
 
       <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-[#C9942A]/10 blur-3xl" />
 
@@ -29,118 +43,135 @@ export default function CorporateOrders() {
       <div className="relative z-10 mx-auto max-w-7xl px-5">
         <div className="grid items-center gap-14 lg:grid-cols-2">
           {/* Content */}
-
           <div>
-            <div className="mb-4 inline-flex items-center gap-2 text-sm text-[#C9942A]">
-              <Building2 size={16} />
+            <Reveal direction="right" duration={0.7}>
+              <div className="mb-4 inline-flex items-center gap-2 text-sm text-[#C9942A]">
+                <Building2 size={16} />
 
-              <span>{t("sectionLabel")}</span>
-            </div>
+                <span>{t("sectionLabel")}</span>
+              </div>
+            </Reveal>
 
-            <h2 className="mb-5 text-4xl font-bold leading-tight text-white">
-              {t("heading")}
+            <Reveal direction="right" delay={0.1} duration={0.75}>
+              <h2 className="mb-5 text-4xl font-bold leading-tight text-white">
+                {t("heading")}
 
-              <br />
+                <br />
 
-              <span className="text-[#E8C472]">{t("headingAccent")}</span>
-            </h2>
+                <span className="text-[#E8C472]">{t("headingAccent")}</span>
+              </h2>
+            </Reveal>
 
-            <p className="mb-8 max-w-xl leading-8 text-[#D4B896]">
-              {t("body")}
-            </p>
+            <Reveal direction="right" delay={0.2} duration={0.75}>
+              <p className="mb-8 max-w-xl leading-8 text-[#D4B896]">
+                {t("body")}
+              </p>
+            </Reveal>
 
-            <div className="mb-8 grid grid-cols-2 gap-4">
-              {" "}
+            {/* Benefits */}
+            <Stagger delay={0.1} className="mb-8 grid grid-cols-2 gap-4">
               {t.raw("benefits").map((benefit: string, index: number) => {
                 const Icon = icons[index];
 
                 return (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3"
-                  >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#C9942A]/20">
-                      <Icon size={18} className="text-[#C9942A]" />
-                    </div>
+                  <StaggerItem key={benefit}>
+                    <div className="group flex h-full items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 transition-all duration-300 hover:-translate-y-1 hover:border-[#C9942A]/30 hover:bg-white/10">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#C9942A]/20 transition-transform duration-300 group-hover:scale-110">
+                        <Icon size={18} className="text-[#C9942A]" />
+                      </div>
 
-                    <span className="text-sm text-[#E8D7BF]">{benefit}</span>
-                  </div>
+                      <span className="text-sm text-[#E8D7BF]">{benefit}</span>
+                    </div>
+                  </StaggerItem>
                 );
               })}
-            </div>
+            </Stagger>
 
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <Link
-                href="/contact"
-                className="flex items-center justify-center gap-2 rounded-full bg-[#C9942A] px-8 py-4 font-semibold text-[#2C1A0E] transition hover:scale-105"
-                prefetch
-              >
-                {t("ctaQuote")}
-                <ArrowLeft size={17} />
-              </Link>
+            {/* Buttons */}
+            <Reveal direction="up" delay={0.25}>
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <Link
+                  href="/contact"
+                  className="flex items-center justify-center gap-2 rounded-full bg-[#C9942A] px-8 py-4 font-semibold text-[#2C1A0E] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  prefetch
+                >
+                  {t("ctaQuote")}
 
-              <Link
-                href="https://wa.me/201000000000"
-                target="_blank"
-                className="flex items-center justify-center rounded-full bg-[#25D366] px-8 py-4 font-semibold text-white transition hover:bg-[#20b558]"
-                prefetch
-              >
-                {t("ctaWhatsapp")}
-              </Link>
-            </div>
+                  <ArrowIcon size={17} />
+                </Link>
+
+                <Link
+                  href="https://wa.me/201000000000"
+                  target="_blank"
+                  className="flex items-center justify-center rounded-full bg-[#25D366] px-8 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#20b558] hover:shadow-xl"
+                  prefetch
+                >
+                  {t("ctaWhatsapp")}
+                </Link>
+              </div>
+            </Reveal>
           </div>
 
           {/* Images */}
+          <Reveal
+            direction="left"
+            delay={0.15}
+            duration={0.9}
+            className="hidden lg:block"
+          >
+            <div className="relative">
+              <div className="grid grid-cols-2 gap-4">
+                {/* First column */}
+                <div className="space-y-4">
+                  <div className="group relative h-52 overflow-hidden rounded-3xl">
+                    <Image
+                      src={images[0]}
+                      alt="Semsmya"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
 
-          <div className="relative hidden lg:block">
-            <div className="grid grid-cols-2 gap-4">
-              {" "}
-              <div className="space-y-4">
-                <div className="relative h-52 overflow-hidden rounded-3xl">
-                  <Image
-                    src={images[0]}
-                    alt="Semsmya"
-                    fill
-                    className="object-cover"
-                  />
+                  <div className="group relative h-36 overflow-hidden rounded-3xl">
+                    <Image
+                      src={images[1]}
+                      alt="Foul"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
                 </div>
 
-                <div className="relative h-36 overflow-hidden rounded-3xl">
-                  <Image
-                    src={images[1]}
-                    alt="Foul"
-                    fill
-                    className="object-cover"
-                  />
+                {/* Second column */}
+                <div className="mt-10 space-y-4">
+                  <div className="group relative h-36 overflow-hidden rounded-3xl">
+                    <Image
+                      src={images[2]}
+                      alt="Malban"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+
+                  <div className="group relative h-52 overflow-hidden rounded-3xl">
+                    <Image
+                      src={images[3]}
+                      alt="Homsya"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="mt-10 space-y-4">
-                <div className="relative h-36 overflow-hidden rounded-3xl">
-                  <Image
-                    src={images[2]}
-                    alt="Malban"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
 
-                <div className="relative h-52 overflow-hidden rounded-3xl">
-                  <Image
-                    src={images[3]}
-                    alt="Homsya"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+              {/* Badge */}
+              <div className="absolute -bottom-5 right-6 rounded-3xl bg-[#C9942A] px-6 py-4 text-white shadow-2xl transition-transform duration-300 hover:-translate-y-1 hover:scale-105">
+                <div className="text-3xl font-bold">{t("badge.value")}</div>
+
+                <div className="text-sm opacity-90">{t("badge.label")}</div>
               </div>
             </div>
-
-            <div className="absolute -bottom-5 right-6 rounded-3xl bg-[#C9942A] px-6 py-4 text-white shadow-2xl">
-              <div className="text-3xl font-bold">{t("badge.value")}</div>
-
-              <div className="text-sm opacity-90">{t("badge.label")}</div>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

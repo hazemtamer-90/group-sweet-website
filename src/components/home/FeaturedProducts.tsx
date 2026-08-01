@@ -5,60 +5,70 @@ import { Link } from "@/i18n/navigation";
 import ProductCard from "./ProductCard";
 import { products } from "../../data/products";
 
+import Reveal from "@/components/motion/Reveal";
+import Stagger, { StaggerItem } from "@/components/motion/Stagger";
+
 export default function FeaturedProducts() {
   const t = useTranslations("featured");
 
   const featuredProducts = products.slice(0, 8);
 
   return (
-    <section className="py-20 bg-[#FFFBF0]">
-      <div className="max-w-7xl mx-auto px-5">
+    <section className="overflow-hidden bg-[#FFFBF0] py-20">
+      <div className="mx-auto max-w-7xl px-5">
+        {/* Heading */}
+        <div className="mb-12 flex items-end justify-between">
+          <Reveal direction="right" duration={0.7}>
+            <div>
+              <div className="mb-3 flex items-center gap-2 text-sm text-[#C9942A]">
+                <span className="h-px w-12 bg-[#C9942A]" />
 
-        <div className="flex items-end justify-between mb-12">
+                <span>{t("sectionLabel")}</span>
+              </div>
 
-          <div>
-
-            <div className="flex items-center gap-2 text-[#C9942A] text-sm mb-3">
-              <span className="w-12 h-px bg-[#C9942A]" />
-              <span>{t("sectionLabel")}</span>
+              <h2 className="text-4xl font-bold text-[#2C1A0E]">
+                {t("heading")}
+              </h2>
             </div>
+          </Reveal>
 
-            <h2 className="text-4xl font-bold text-[#2C1A0E]">
-              {t("heading")}
-            </h2>
-
-          </div>
-
-          <Link
-            href="/products"
-            className="hidden md:flex items-center gap-2 text-[#670047] font-semibold hover:gap-3 transition-all"
-            prefetch
-          >
-            {t("viewAll")} ←
-          </Link>
-
+          <Reveal direction="left" delay={0.15} duration={0.7}>
+            <Link
+              href="/products"
+              className="hidden items-center gap-2 font-semibold text-[#670047] transition-all duration-300 hover:gap-3 md:flex"
+              prefetch
+            >
+              {t("viewAll")} ←
+            </Link>
+          </Reveal>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">          {featuredProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-            />
+        {/* Products */}
+        <Stagger
+          delay={0.08}
+          className="grid grid-cols-2 gap-6 md:grid-cols-3 xl:grid-cols-4"
+        >
+          {featuredProducts.map((product) => (
+            <StaggerItem key={product.id}>
+              <div className="h-full">
+                <ProductCard product={product} />
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
-        <div className="flex justify-center mt-12">
-
-          <Link
-            href="/products"
-            className="md:hidden bg-[#670047] hover:bg-[#7A0052] text-white px-8 py-3 rounded-full font-semibold transition"
-            prefetch
-          >
-            {t("viewAllMobile")}
-          </Link>
-
-        </div>
-
+        {/* Mobile View All */}
+        <Reveal direction="up" delay={0.15}>
+          <div className="mt-12 flex justify-center">
+            <Link
+              href="/products"
+              className="rounded-full bg-[#670047] px-8 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#7A0052] hover:shadow-lg md:hidden"
+              prefetch
+            >
+              {t("viewAllMobile")}
+            </Link>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

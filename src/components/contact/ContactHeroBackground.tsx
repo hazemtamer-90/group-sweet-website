@@ -22,7 +22,7 @@ export default function ContactHeroBackground() {
         }}
         className="absolute -left-24 top-0 h-[420px] w-[420px] rounded-full bg-[#C9942A]/20 blur-3xl"
       />
-
+      
       {/* Purple Glow */}
       <motion.div
         animate={{
@@ -37,7 +37,7 @@ export default function ContactHeroBackground() {
         }}
         className="absolute -right-28 bottom-0 h-[380px] w-[380px] rounded-full bg-[#670047]/20 blur-3xl"
       />
-
+        
       {/* Circle 1 */}
       <motion.div
         animate={{
@@ -58,7 +58,7 @@ export default function ContactHeroBackground() {
         }}
         className="absolute left-[12%] top-[18%] h-20 w-20 rounded-full border border-[#C9942A]/20"
       />
-
+      
       {/* Circle 2 */}
       <motion.div
         animate={{
@@ -79,7 +79,7 @@ export default function ContactHeroBackground() {
         }}
         className="absolute left-[8%] bottom-[12%] h-28 w-28 rounded-full border border-[#C9942A]/15"
       />
-
+      
       {/* Circle 3 */}
       <motion.div
         animate={{
