@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 
 import { routing } from "@/i18n/routing";
 
-import AdminButton from "@/components/AdminButton";
 import WishlistHydration from "@/components/providers/WishlistHydration";
 import Toast from "@/components/ui/Toast";
 import AppPreloader from "@/components/common/AppPreloader";
